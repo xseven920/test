@@ -8,6 +8,102 @@
 
 <style>
 
+    /* =========================
+   身体数据表单
+========================= */
+
+.body-form {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+
+}
+
+.form-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.form-item label {
+
+    font-size: 14px;
+
+    color: #666;
+
+}
+
+.form-item input {
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+}
+
+.save-button {
+
+    margin-top: 20px;
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #111;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
+.save-button:hover {
+
+    opacity: 0.85;
+
+}
+
+
+@media (max-width: 800px) {
+
+    .body-form {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .body-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
 * {
     box-sizing: border-box;
 }
@@ -321,7 +417,106 @@ canvas {
 <h1>
     数据统计
 </h1>
+<!-- =========================
+     身体数据录入
+========================= -->
 
+<div class="section">
+
+    <h2>记录身体数据</h2>
+
+    <div class="body-form">
+
+        <div class="form-item">
+
+            <label>
+                日期
+            </label>
+
+            <input
+                type="date"
+                id="bodyDate"
+            >
+
+        </div>
+
+
+        <div class="form-item">
+
+            <label>
+                体重（kg）
+            </label>
+
+            <input
+                type="number"
+                id="bodyWeight"
+                step="0.1"
+                placeholder="例如 70"
+            >
+
+        </div>
+
+
+        <div class="form-item">
+
+            <label>
+                体脂率（%）
+            </label>
+
+            <input
+                type="number"
+                id="bodyFat"
+                step="0.1"
+                placeholder="例如 18"
+            >
+
+        </div>
+
+
+        <div class="form-item">
+
+            <label>
+                腰围（cm）
+            </label>
+
+            <input
+                type="number"
+                id="bodyWaist"
+                step="0.1"
+                placeholder="例如 80"
+            >
+
+        </div>
+
+
+        <div class="form-item">
+
+            <label>
+                胸围（cm）
+            </label>
+
+            <input
+                type="number"
+                id="bodyChest"
+                step="0.1"
+                placeholder="例如 95"
+            >
+
+        </div>
+
+    </div>
+
+
+    <button
+        onclick="saveBodyData()"
+        class="save-button">
+
+        保存身体数据
+
+    </button>
+
+</div>
+    
 <div class="subtitle">
     记录、分析和观察自己的训练变化
 </div>
@@ -470,6 +665,184 @@ canvas {
 
 <script>
 
+    /* ==================================================
+   身体数据
+================================================== */
+
+let bodyData =
+    JSON.parse(
+        localStorage.getItem("bodyData")
+    ) || [];
+
+
+/* ==================================================
+   设置今天日期
+================================================== */
+
+function setBodyDate() {
+
+    const today =
+        new Date();
+
+    const year =
+        today.getFullYear();
+
+    const month =
+        String(
+            today.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(2, "0");
+
+    document.getElementById(
+        "bodyDate"
+    ).value =
+        `${year}-${month}-${day}`;
+
+}
+
+
+setBodyDate();
+
+
+/* ==================================================
+   保存身体数据
+================================================== */
+
+function saveBodyData() {
+
+    const date =
+        document.getElementById(
+            "bodyDate"
+        ).value;
+
+
+    const weight =
+        document.getElementById(
+            "bodyWeight"
+        ).value;
+
+
+    const bodyFat =
+        document.getElementById(
+            "bodyFat"
+        ).value;
+
+
+    const waist =
+        document.getElementById(
+            "bodyWaist"
+        ).value;
+
+
+    const chest =
+        document.getElementById(
+            "bodyChest"
+        ).value;
+
+
+    /* 日期必须填写 */
+
+    if (!date) {
+
+        alert(
+            "请选择日期"
+        );
+
+        return;
+
+    }
+
+
+    /* 至少填写一项 */
+
+    if (
+        weight === "" &&
+        bodyFat === "" &&
+        waist === "" &&
+        chest === ""
+    ) {
+
+        alert(
+            "请至少填写一项身体数据"
+        );
+
+        return;
+
+    }
+
+
+    const record = {
+
+        id: Date.now(),
+
+        date: date,
+
+        weight:
+            weight === ""
+                ? null
+                : Number(weight),
+
+        bodyFat:
+            bodyFat === ""
+                ? null
+                : Number(bodyFat),
+
+        waist:
+            waist === ""
+                ? null
+                : Number(waist),
+
+        chest:
+            chest === ""
+                ? null
+                : Number(chest)
+
+    };
+
+
+    bodyData.push(
+        record
+    );
+
+
+    localStorage.setItem(
+        "bodyData",
+        JSON.stringify(
+            bodyData
+        )
+    );
+
+
+    alert(
+        "身体数据保存成功"
+    );
+
+
+    /*
+       清空输入
+    */
+
+    document.getElementById(
+        "bodyWeight"
+    ).value = "";
+
+    document.getElementById(
+        "bodyFat"
+    ).value = "";
+
+    document.getElementById(
+        "bodyWaist"
+    ).value = "";
+
+    document.getElementById(
+        "bodyChest"
+    ).value = "";
+
+}
 
 /* ==================================================
    读取训练数据
