@@ -2,529 +2,1474 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>我的俄挺之路</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                "Microsoft YaHei",
-                "PingFang SC",
-                Arial,
-                sans-serif;
-
-            background: #f7f8fa;
-            color: #111827;
-        }
-
-        /* ==================== */
-        /* 导航栏 */
-        /* ==================== */
-
-        nav {
-            height: 64px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 40px;
-
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .nav-links a:hover {
-            color: #111827;
-        }
-
-
-        /* ==================== */
-        /* 页面主体 */
-        /* ==================== */
-
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 60px 30px;
-        }
-
-
-        /* ==================== */
-        /* 首页标题 */
-        /* ==================== */
-
-        .hero {
-            margin-bottom: 50px;
-        }
-
-        .hero-label {
-            font-size: 13px;
-            color: #6b7280;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin: 0 0 15px 0;
-            letter-spacing: -1px;
-        }
 
-        .hero p {
-            font-size: 18px;
-            color: #6b7280;
-            margin: 0;
-        }
+<meta charset="UTF-8">
 
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-        /* ==================== */
-        /* 数据卡片 */
-        /* ==================== */
+<title>My Planche Journey</title>
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
 
-            margin-bottom: 50px;
-        }
+<!-- =========================================================
+     页面样式
+========================================================= -->
 
-        .stat-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
+<style>
 
-            padding: 25px;
-        }
+/* =========================
+   基础设置
+========================= */
 
-        .stat-label {
-            font-size: 13px;
-            color: #6b7280;
-            margin-bottom: 10px;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .stat-value {
-            font-size: 28px;
-            font-weight: bold;
-        }
+body {
 
+    margin: 0;
 
-        /* ==================== */
-        /* 区块标题 */
-        /* ==================== */
+    font-family:
+        Arial,
+        "Microsoft YaHei",
+        sans-serif;
 
-        .section-title {
-            font-size: 13px;
-            letter-spacing: 2px;
-            color: #6b7280;
+    background: #f5f7fa;
 
-            margin-bottom: 15px;
-        }
+    color: #222;
+}
 
 
-        /* ==================== */
-        /* 健身信息卡片 */
-        /* ==================== */
+/* =========================
+   导航
+========================= */
 
-        .fitness-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+.nav {
 
-            margin-bottom: 50px;
-        }
+    background: #111;
 
-        .card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
+    padding: 18px 30px;
 
-            padding: 30px;
-        }
+    display: flex;
 
-        .card h2 {
-            margin-top: 0;
-            font-size: 20px;
-        }
+    justify-content:
+        space-between;
 
-        .card p {
-            color: #6b7280;
-        }
+    align-items: center;
+}
 
-        .training-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
+.logo {
 
-        .training-item:last-child {
-            border-bottom: none;
-        }
+    color: white;
 
+    font-size: 20px;
 
-        /* ==================== */
-        /* 进度条 */
-        /* ==================== */
+    font-weight: bold;
+}
 
-        .progress-bar {
-            width: 100%;
-            height: 10px;
+.nav a {
 
-            background: #e5e7eb;
+    color: #bbb;
 
-            border-radius: 10px;
+    text-decoration: none;
 
-            overflow: hidden;
+    margin-left: 22px;
+}
 
-            margin: 20px 0 10px 0;
-        }
+.nav a:hover {
 
-        .progress {
-            width: 35%;
-            height: 100%;
-            background: #111827;
-        }
+    color: white;
+}
 
-        .progress-text {
-            font-size: 13px;
-            color: #6b7280;
-        }
 
+/* =========================
+   页面主体
+========================= */
 
-        /* ==================== */
-        /* 最近训练 */
-        /* ==================== */
+.container {
 
-        .activity {
-            background: white;
+    max-width: 1100px;
 
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
+    margin: auto;
 
-            padding: 10px 30px;
-        }
+    padding: 50px 20px;
+}
 
-        .activity-row {
-            display: flex;
-            justify-content: space-between;
 
-            padding: 18px 0;
+/* =========================
+   首页标题
+========================= */
 
-            border-bottom: 1px solid #f0f0f0;
-        }
+.hero {
 
-        .activity-row:last-child {
-            border-bottom: none;
-        }
+    margin-bottom: 35px;
+}
 
-        .activity-date {
-            color: #6b7280;
-        }
+.hero h1 {
 
+    margin: 0;
 
-        /* ==================== */
-        /* 手机端 */
-        /* ==================== */
+    font-size: 42px;
 
-        @media (max-width: 700px) {
+    line-height: 1.2;
+}
 
-            nav {
-                padding: 0 20px;
-            }
+.hero p {
 
-            .nav-links {
-                gap: 15px;
-            }
+    margin-top: 12px;
 
-            main {
-                padding: 40px 20px;
-            }
+    color: #777;
 
-            h1 {
-                font-size: 36px;
-            }
+    font-size: 17px;
+}
 
-            .stats {
-                grid-template-columns: 1fr 1fr;
-            }
 
-            .fitness-grid {
-                grid-template-columns: 1fr;
-            }
+/* =========================
+   数据卡片
+========================= */
 
-        }
+.stats {
 
-    </style>
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.stat-card {
+
+    background: white;
+
+    padding: 24px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.05);
+}
+
+.stat-title {
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+.stat-number {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+}
+
+.stat-unit {
+
+    color: #888;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================
+   内容区域
+========================= */
+
+.section {
+
+    margin-top: 30px;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.05);
+}
+
+.section h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   最近训练
+========================= */
+
+.training-header {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.training-date {
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+.training-type {
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+.exercise-list {
+
+    display: grid;
+
+    gap: 10px;
+}
+
+.exercise-item {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    padding: 14px 16px;
+
+    background: #f7f7f7;
+
+    border-radius: 10px;
+}
+
+.exercise-name {
+
+    font-weight: 500;
+}
+
+.exercise-value {
+
+    color: #666;
+}
+
+
+/* =========================
+   身体数据
+========================= */
+
+.body-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.body-item {
+
+    padding: 18px;
+
+    background: #f7f7f7;
+
+    border-radius: 12px;
+}
+
+.body-label {
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.body-value {
+
+    margin-top: 8px;
+
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+.body-unit {
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   俄挺进度
+========================= */
+
+.planche-card {
+
+    padding: 25px;
+
+    background: #111;
+
+    color: white;
+
+    border-radius: 14px;
+}
+
+.planche-title {
+
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+.planche-subtitle {
+
+    margin-top: 6px;
+
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+
+/* 进度条 */
+
+.progress {
+
+    margin-top: 22px;
+
+    height: 10px;
+
+    background: #333;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+
+    height: 100%;
+
+    width: 25%;
+
+    background: white;
+
+    border-radius: 20px;
+}
+
+.progress-text {
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    color: #aaa;
+}
+
+
+/* =========================
+   快速入口
+========================= */
+
+.quick-links {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.quick-link {
+
+    display: block;
+
+    padding: 20px;
+
+    background: #f7f7f7;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: #222;
+
+    transition: 0.2s;
+}
+
+.quick-link:hover {
+
+    background: #eee;
+
+    transform: translateY(-2px);
+}
+
+.quick-title {
+
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+.quick-description {
+
+    margin-top: 6px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   空数据
+========================= */
+
+.empty {
+
+    color: #999;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+
+/* =========================
+   手机端
+========================= */
+
+@media (max-width: 800px) {
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .body-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .quick-links {
+
+        grid-template-columns: 1fr;
+    }
+
+    .nav {
+
+        padding: 15px;
+    }
+
+    .nav a {
+
+        margin-left: 10px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .container {
+
+        padding:
+            35px 15px;
+    }
+
+    .hero h1 {
+
+        font-size: 32px;
+    }
+
+    .stats {
+
+        grid-template-columns: 1fr;
+    }
+
+    .body-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .exercise-item {
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+}
+
+</style>
+
 </head>
 
 
 <body>
 
 
-<!-- ==================== -->
-<!-- 导航栏 -->
-<!-- ==================== -->
+<!-- =========================================================
+     导航
+========================================================= -->
 
-<nav>
+<div class="nav">
 
     <div class="logo">
-        SEVENFLASH
-    </div>
-
-    <div class="nav-links">
-
-<a href="index.html">首页</a>
-
-<a href="training.html">训练</a>
-
-<a href="data.html">数据</a>
-
-<a href="planche.html">俄挺</a>
-
-    </div>
-
-</nav>
-
-
-<main>
-
-
-<!-- ==================== -->
-<!-- 首页介绍 -->
-<!-- ==================== -->
-
-<section class="hero">
-
-    <div class="hero-label">
-        个人健身仪表盘
-    </div>
-
-    <h1>
-        我的俄挺之路
-    </h1>
-
-    <p>
-        记录从 0 开始学习俄挺的全过程
-    </p>
-
-</section>
-
-
-<!-- ==================== -->
-<!-- 当前数据 -->
-<!-- ==================== -->
-
-<section class="stats">
-
-
-    <div class="stat-card">
-
-        <div class="stat-label">
-            训练天数
-        </div>
-
-        <div class="stat-value">
-            49 天
-        </div>
-
+        My Planche Journey
     </div>
 
 
-    <div class="stat-card">
+    <div>
 
-        <div class="stat-label">
-            当前体重
-        </div>
+        <a href="index.html">
+            首页
+        </a>
 
-        <div class="stat-value">
-            68 kg
-        </div>
+        <a href="training.html">
+            训练
+        </a>
 
-    </div>
+        <a href="data.html">
+            数据
+        </a>
 
-
-    <div class="stat-card">
-
-        <div class="stat-label">
-            当前体脂
-        </div>
-
-        <div class="stat-value">
-            16%
-        </div>
+        <a href="planche.html">
+            俄挺
+        </a>
 
     </div>
 
-
-    <div class="stat-card">
-
-        <div class="stat-label">
-            当前阶段
-        </div>
-
-        <div class="stat-value">
-            筑基期
-        </div>
-
-    </div>
-
-
-</section>
-
-
-<!-- ==================== -->
-<!-- 健身数据 -->
-<!-- ==================== -->
-
-<div class="section-title">
-    健身数据
 </div>
 
 
-<section class="fitness-grid">
+
+<!-- =========================================================
+     页面主体
+========================================================= -->
+
+<div class="container">
 
 
-    <!-- 今日训练 -->
+    <!-- =====================================================
+         首页标题
+    ====================================================== -->
 
-    <div class="card">
+    <div class="hero">
 
-        <h2>
-            今日训练
-        </h2>
+        <h1>
+            My Planche Journey
+        </h1>
 
-        <div class="training-item">
-            推日
+        <p>
+            从 0 开始，记录我的俄挺训练全过程。
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         核心数据
+         
+         这些数据全部通过 JavaScript 自动读取。
+    ====================================================== -->
+
+    <div class="stats">
+
+
+        <!-- 累计训练天数 -->
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                累计训练天数
+            </div>
+
+            <div
+                class="stat-number"
+                id="trainingDays">
+
+                0
+
+            </div>
+
+            <div class="stat-unit">
+                天
+            </div>
+
         </div>
 
-        <div class="training-item">
-            俯卧撑 — 8 × 4
+
+
+        <!-- 累计训练次数 -->
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                累计训练次数
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalTraining">
+
+                0
+
+            </div>
+
+            <div class="stat-unit">
+                次
+            </div>
+
         </div>
 
-        <div class="training-item">
-            斜身支撑 — 30 秒 × 3
+
+
+        <!-- 当前体重 -->
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                当前体重
+            </div>
+
+            <div
+                class="stat-number"
+                id="currentWeight">
+
+                --
+
+            </div>
+
+            <div class="stat-unit">
+                kg
+            </div>
+
+        </div>
+
+
+
+        <!-- 当前体脂 -->
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                当前体脂率
+            </div>
+
+            <div
+                class="stat-number"
+                id="currentBodyFat">
+
+                --
+
+            </div>
+
+            <div class="stat-unit">
+                %
+            </div>
+
         </div>
 
     </div>
 
 
-    <!-- 俄挺进度 -->
 
-    <div class="card">
+    <!-- =====================================================
+         最近一次训练
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>
+            最近一次训练
+        </h2>
+
+
+        <div id="latestTraining">
+
+            <div class="empty">
+                暂无训练记录
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         当前身体状态
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>
+            当前身体状态
+        </h2>
+
+
+        <div class="body-grid">
+
+
+            <div class="body-item">
+
+                <div class="body-label">
+                    体重
+                </div>
+
+                <div
+                    class="body-value"
+                    id="bodyWeight">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    kg
+                </div>
+
+            </div>
+
+
+            <div class="body-item">
+
+                <div class="body-label">
+                    体脂率
+                </div>
+
+                <div
+                    class="body-value"
+                    id="bodyFat">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="body-item">
+
+                <div class="body-label">
+                    腰围
+                </div>
+
+                <div
+                    class="body-value"
+                    id="bodyWaist">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    cm
+                </div>
+
+            </div>
+
+
+            <div class="body-item">
+
+                <div class="body-label">
+                    胸围
+                </div>
+
+                <div
+                    class="body-value"
+                    id="bodyChest">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    cm
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         俄挺进度
+    ====================================================== -->
+
+    <div class="section">
 
         <h2>
             俄挺进度
         </h2>
 
-        <p>
-            当前阶段：基础力量阶段
-        </p>
 
-        <div class="progress-bar">
+        <div class="planche-card">
 
-            <div class="progress"></div>
+            <div class="planche-title">
+                Phase 1 · 基础力量
+            </div>
 
-        </div>
+            <div class="planche-subtitle">
 
-        <div class="progress-text">
-            第一阶段 · 基础力量
+                建立推、拉、核心基础力量，
+                为后续俄挺训练做准备。
+
+            </div>
+
+
+            <div class="progress">
+
+                <div class="progress-bar"></div>
+
+            </div>
+
+
+            <div class="progress-text">
+
+                当前阶段 · 基础训练
+
+            </div>
+
         </div>
 
     </div>
 
 
-</section>
+
+    <!-- =====================================================
+         快速入口
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>
+            快速入口
+        </h2>
 
 
-<!-- ==================== -->
-<!-- 最近训练 -->
-<!-- ==================== -->
+        <div class="quick-links">
 
-<div class="section-title">
-    最近训练
+
+            <a
+                href="training.html"
+                class="quick-link">
+
+                <div class="quick-title">
+                    训练记录
+                </div>
+
+                <div class="quick-description">
+                    记录今天完成的训练
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="data.html"
+                class="quick-link">
+
+                <div class="quick-title">
+                    身体数据
+                </div>
+
+                <div class="quick-description">
+                    查看体重、体脂和身体变化
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="planche.html"
+                class="quick-link">
+
+                <div class="quick-title">
+                    俄挺计划
+                </div>
+
+                <div class="quick-description">
+                    查看当前阶段和训练目标
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
 </div>
 
 
-<section class="activity">
+
+<!-- =========================================================
+     JavaScript
+========================================================= -->
+
+<script>
 
 
-    <div class="activity-row">
-
-        <span>
-            推日
-        </span>
-
-        <span class="activity-date">
-            2026.09.27
-        </span>
-
-    </div>
+/* =========================================================
+   第一部分：读取训练数据
+========================================================= */
 
 
-    <div class="activity-row">
+/*
+    training.html 保存的数据结构：
 
-        <span>
-            拉日
-        </span>
+    [
+        {
+            id: 123456,
+            date: "2026-09-27",
+            type: "Push",
+            exercises: [
+                {
+                    name: "俯卧撑",
+                    reps: 8,
+                    sets: 4
+                }
+            ],
+            note: ""
+        }
+    ]
+*/
 
-        <span class="activity-date">
-            2026.09.26
-        </span>
-
-    </div>
-
-
-    <div class="activity-row">
-
-        <span>
-            休息
-        </span>
-
-        <span class="activity-date">
-            2026.09.25
-        </span>
-
-    </div>
-
-
-</section>
+const trainings =
+    JSON.parse(
+        localStorage.getItem("trainings")
+    ) || [];
 
 
-</main>
+
+/* =========================================================
+   判断是否为休息日
+========================================================= */
+
+function isRest(type) {
+
+    return type === "休息";
+
+}
+
+
+
+/* =========================================================
+   计算累计训练天数
+========================================================= */
+
+function calculateTrainingDays() {
+
+    const dates =
+        new Set();
+
+
+    trainings.forEach(training => {
+
+        if (
+            !isRest(training.type)
+        ) {
+
+            dates.add(
+                training.date
+            );
+
+        }
+
+    });
+
+
+    return dates.size;
+
+}
+
+
+
+/* =========================================================
+   获取累计训练次数
+========================================================= */
+
+function calculateTotalTraining() {
+
+    return trainings.filter(
+        training =>
+            !isRest(training.type)
+    ).length;
+
+}
+
+
+
+/* =========================================================
+   获取最新训练
+========================================================= */
+
+function getLatestTraining() {
+
+    if (
+        trainings.length === 0
+    ) {
+
+        return null;
+
+    }
+
+
+    /*
+        按日期从新到旧排序。
+
+        如果日期相同，
+        再使用 id 判断哪条记录更新。
+    */
+
+    const sorted =
+        [...trainings].sort(
+            (a, b) => {
+
+                const dateCompare =
+                    new Date(b.date) -
+                    new Date(a.date);
+
+
+                if (
+                    dateCompare !== 0
+                ) {
+
+                    return dateCompare;
+
+                }
+
+
+                return b.id - a.id;
+
+            }
+        );
+
+
+    return sorted[0];
+
+}
+
+
+
+/* =========================================================
+   显示最近一次训练
+========================================================= */
+
+function renderLatestTraining() {
+
+    const container =
+        document.getElementById(
+            "latestTraining"
+        );
+
+
+    const latest =
+        getLatestTraining();
+
+
+    if (!latest) {
+
+        container.innerHTML =
+            '<div class="empty">暂无训练记录</div>';
+
+        return;
+
+    }
+
+
+
+    /*
+        如果最近一条记录是休息日，
+        也正常显示。
+    */
+
+    let html = `
+
+        <div class="training-header">
+
+            <div>
+
+                <div class="training-type">
+
+                    ${latest.type || "训练"}
+
+                </div>
+
+                <div class="training-date">
+
+                    ${latest.date}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+
+    /*
+        如果是休息日，
+        不需要显示动作。
+    */
+
+    if (
+        isRest(latest.type)
+    ) {
+
+        html += `
+
+            <div class="empty">
+
+                今天休息，恢复也是训练的一部分。
+
+            </div>
+
+        `;
+
+        container.innerHTML = html;
+
+        return;
+
+    }
+
+
+
+    /*
+        显示本次训练中的所有动作。
+    */
+
+    if (
+        latest.exercises &&
+        latest.exercises.length > 0
+    ) {
+
+        html += `
+            <div class="exercise-list">
+        `;
+
+
+        latest.exercises.forEach(
+            exercise => {
+
+                html += `
+
+                    <div class="exercise-item">
+
+                        <span class="exercise-name">
+
+                            ${exercise.name}
+
+                        </span>
+
+                        <span class="exercise-value">
+
+                            ${exercise.reps}
+                            ×
+                            ${exercise.sets}
+
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        html += `
+            </div>
+        `;
+
+    } else {
+
+        html += `
+
+            <div class="empty">
+                本次训练暂无动作记录
+            </div>
+
+        `;
+
+    }
+
+
+
+    /*
+        如果有备注，就显示备注。
+    */
+
+    if (
+        latest.note
+    ) {
+
+        html += `
+
+            <div
+                style="
+                    margin-top:15px;
+                    color:#777;
+                    font-size:14px;
+                ">
+
+                备注：
+                ${latest.note}
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+
+/* =========================================================
+   第二部分：身体数据
+========================================================= */
+
+
+/*
+    data.html 保存的身体数据结构：
+
+    {
+        id: 123456,
+        date: "2026-09-27",
+        weight: 70,
+        bodyFat: 18,
+        waist: 80,
+        chest: 95
+    }
+*/
+
+const bodyData =
+    JSON.parse(
+        localStorage.getItem("bodyData")
+    ) || [];
+
+
+
+/* =========================================================
+   获取最新身体数据
+========================================================= */
+
+function getLatestBodyData() {
+
+    if (
+        bodyData.length === 0
+    ) {
+
+        return null;
+
+    }
+
+
+    const sorted =
+        [...bodyData].sort(
+            (a, b) =>
+                new Date(b.date) -
+                new Date(a.date)
+        );
+
+
+    return sorted[0];
+
+}
+
+
+
+/* =========================================================
+   显示当前身体数据
+========================================================= */
+
+function renderBodyData() {
+
+    const latest =
+        getLatestBodyData();
+
+
+    if (!latest) {
+
+        return;
+
+    }
+
+
+
+    /*
+        首页顶部的体重
+    */
+
+    document.getElementById(
+        "currentWeight"
+    ).textContent =
+
+        latest.weight !== null &&
+        latest.weight !== undefined
+
+            ? latest.weight
+
+            : "--";
+
+
+
+    /*
+        首页顶部的体脂率
+    */
+
+    document.getElementById(
+        "currentBodyFat"
+    ).textContent =
+
+        latest.bodyFat !== null &&
+        latest.bodyFat !== undefined
+
+            ? latest.bodyFat
+
+            : "--";
+
+
+
+    /*
+        身体状态区域
+    */
+
+    document.getElementById(
+        "bodyWeight"
+    ).textContent =
+
+        latest.weight !== null &&
+        latest.weight !== undefined
+
+            ? latest.weight
+
+            : "--";
+
+
+    document.getElementById(
+        "bodyFat"
+    ).textContent =
+
+        latest.bodyFat !== null &&
+        latest.bodyFat !== undefined
+
+            ? latest.bodyFat
+
+            : "--";
+
+
+    document.getElementById(
+        "bodyWaist"
+    ).textContent =
+
+        latest.waist !== null &&
+        latest.waist !== undefined
+
+            ? latest.waist
+
+            : "--";
+
+
+    document.getElementById(
+        "bodyChest"
+    ).textContent =
+
+        latest.chest !== null &&
+        latest.chest !== undefined
+
+            ? latest.chest
+
+            : "--";
+
+}
+
+
+
+/* =========================================================
+   第三部分：初始化首页
+========================================================= */
+
+
+/*
+    累计训练天数
+*/
+
+document.getElementById(
+    "trainingDays"
+).textContent =
+    calculateTrainingDays();
+
+
+
+/*
+    累计训练次数
+*/
+
+document.getElementById(
+    "totalTraining"
+).textContent =
+    calculateTotalTraining();
+
+
+
+/*
+    最近一次训练
+*/
+
+renderLatestTraining();
+
+
+
+/*
+    当前身体数据
+*/
+
+renderBodyData();
+
+
+</script>
 
 
 </body>
 
 </html>
-```
