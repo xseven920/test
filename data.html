@@ -8,6 +8,13 @@
 
 <style>
 
+    .chart-note {
+    margin-top: 10px;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
     /* =========================
    身体数据表单
 ========================= */
@@ -617,6 +624,217 @@ canvas {
 
     </div>
 
+     <p class="chart-note">
+        以每项指标第一次有效记录为 100%，用于比较不同身体指标的变化趋势。
+        鼠标悬停可查看实际数值。
+    </p>
+</div>
+
+function getFirstValidValue(data, key) {
+    const item = data.find(item =>
+        typeof item[key] === "number" &&
+        !Number.isNaN(item[key])
+    );
+
+    return item ? item[key] : null;
+}
+
+
+function createBodyTrendChart() {
+
+    const data = JSON.parse(localStorage.getItem("bodyData") || "[]");
+
+    if (data.length === 0) {
+        return;
+    }
+
+    // 按日期从早到晚排序
+    data.sort((a, b) => a.date.localeCompare(b.date));
+
+    const labels = data.map(item => item.date);
+
+    const metrics = [
+        {
+            key: "weight",
+            label: "体重",
+            unit: "kg",
+            color: "#2563eb"
+        },
+        {
+            key: "bodyFat",
+            label: "体脂率",
+            unit: "%",
+            color: "#dc2626"
+        },
+        {
+            key: "waist",
+            label: "腰围",
+            unit: "cm",
+            color: "#16a34a"
+        },
+        {
+            key: "chest",
+            label: "胸围",
+            unit: "cm",
+            color: "#f59e0b"
+        }
+    ];
+
+
+    const datasets = metrics.map(metric => {
+
+        // 找到该指标第一次有效记录
+        const baseValue = getFirstValidValue(data, metric.key);
+
+        // 保存真实数据
+        const rawValues = data.map(item => {
+
+            if (
+                item[metric.key] === null ||
+                item[metric.key] === undefined ||
+                item[metric.key] === ""
+            ) {
+                return null;
+            }
+
+            return Number(item[metric.key]);
+        });
+
+
+        // 转换成相对百分比
+        const normalizedValues = rawValues.map(value => {
+
+            if (value === null || baseValue === null) {
+                return null;
+            }
+
+            return Number(
+                ((value / baseValue) * 100).toFixed(2)
+            );
+        });
+
+
+        return {
+            label: metric.label,
+
+            data: normalizedValues,
+
+            // 保存真实数据，供 tooltip 使用
+            rawValues: rawValues,
+
+            unit: metric.unit,
+
+            borderColor: metric.color,
+            backgroundColor: metric.color,
+
+            borderWidth: 2,
+
+            pointRadius: 3,
+            pointHoverRadius: 5,
+
+            tension: 0.3,
+
+            spanGaps: true
+        };
+    });
+
+
+    const ctx = document
+        .getElementById("bodyTrendChart")
+        .getContext("2d");
+
+
+    new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            interaction: {
+                mode: "index",
+                intersect: false
+            },
+
+            plugins: {
+
+                legend: {
+                    position: "top"
+                },
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label: function(context) {
+
+                            const dataset = context.dataset;
+
+                            const rawValue =
+                                dataset.rawValues[context.dataIndex];
+
+
+                            if (
+                                rawValue === null ||
+                                rawValue === undefined
+                            ) {
+                                return dataset.label + ": 暂无数据";
+                            }
+
+
+                            const relativeValue =
+                                context.parsed.y;
+
+
+                            return (
+                                dataset.label +
+                                ": " +
+                                rawValue +
+                                " " +
+                                dataset.unit +
+                                "（" +
+                                relativeValue.toFixed(1) +
+                                "%）"
+                            );
+                        }
+                    }
+                }
+            },
+
+
+            scales: {
+
+                y: {
+
+                    title: {
+                        display: true,
+                        text: "相对初始值（%）"
+                    },
+
+                    ticks: {
+                        callback: function(value) {
+                            return value + "%";
+                        }
+                    }
+                }
+
+            }
+        }
+    });
+}
+
+
+createBodyTrendChart();
+
+    
 </div>
 
     <div class="body-form">
