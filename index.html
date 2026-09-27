@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Planche Journey</title>
+    <title>我的俄挺之路</title>
 
     <style>
 
@@ -17,13 +17,21 @@
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "Microsoft YaHei",
+                "PingFang SC",
+                Arial,
+                sans-serif;
+
             background: #f7f8fa;
             color: #111827;
         }
 
         /* ==================== */
-        /* Navigation */
+        /* 导航栏 */
         /* ==================== */
 
         nav {
@@ -45,6 +53,7 @@
         .logo {
             font-size: 20px;
             font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -64,7 +73,7 @@
 
 
         /* ==================== */
-        /* Main */
+        /* 页面主体 */
         /* ==================== */
 
         main {
@@ -75,7 +84,7 @@
 
 
         /* ==================== */
-        /* Hero */
+        /* 首页标题 */
         /* ==================== */
 
         .hero {
@@ -103,7 +112,7 @@
 
 
         /* ==================== */
-        /* Stats */
+        /* 数据卡片 */
         /* ==================== */
 
         .stats {
@@ -135,7 +144,7 @@
 
 
         /* ==================== */
-        /* Section */
+        /* 区块标题 */
         /* ==================== */
 
         .section-title {
@@ -148,7 +157,7 @@
 
 
         /* ==================== */
-        /* Fitness cards */
+        /* 健身信息卡片 */
         /* ==================== */
 
         .fitness-grid {
@@ -187,7 +196,7 @@
 
 
         /* ==================== */
-        /* Progress */
+        /* 进度条 */
         /* ==================== */
 
         .progress-bar {
@@ -216,7 +225,7 @@
 
 
         /* ==================== */
-        /* Recent activity */
+        /* 最近训练 */
         /* ==================== */
 
         .activity {
@@ -247,7 +256,7 @@
 
 
         /* ==================== */
-        /* Mobile */
+        /* 手机端 */
         /* ==================== */
 
         @media (max-width: 700px) {
@@ -286,7 +295,7 @@
 
 
 <!-- ==================== -->
-<!-- Navigation -->
+<!-- 导航栏 -->
 <!-- ==================== -->
 
 <nav>
@@ -297,13 +306,21 @@
 
     <div class="nav-links">
 
-        <a href="#">Home</a>
+        <a href="#">
+            首页
+        </a>
 
-        <a href="#">Training</a>
+        <a href="#">
+            训练
+        </a>
 
-        <a href="#">Data</a>
+        <a href="#">
+            数据
+        </a>
 
-        <a href="#">Planche</a>
+        <a href="#">
+            俄挺
+        </a>
 
     </div>
 
@@ -314,7 +331,7 @@
 
 
 <!-- ==================== -->
-<!-- Hero -->
+<!-- 首页介绍 -->
 <!-- ==================== -->
 
 <section class="hero">
@@ -324,7 +341,7 @@
     </div>
 
     <h1>
-        My Planche Journey
+        我的俄挺之路
     </h1>
 
     <p>
@@ -335,7 +352,7 @@
 
 
 <!-- ==================== -->
-<!-- Stats -->
+<!-- 当前数据 -->
 <!-- ==================== -->
 
 <section class="stats">
@@ -344,11 +361,11 @@
     <div class="stat-card">
 
         <div class="stat-label">
-            TRAINING DAYS
+            训练天数
         </div>
 
         <div class="stat-value">
-            49
+            49 天
         </div>
 
     </div>
@@ -357,7 +374,7 @@
     <div class="stat-card">
 
         <div class="stat-label">
-            WEIGHT
+            当前体重
         </div>
 
         <div class="stat-value">
@@ -370,7 +387,7 @@
     <div class="stat-card">
 
         <div class="stat-label">
-            BODY FAT
+            当前体脂
         </div>
 
         <div class="stat-value">
@@ -383,11 +400,11 @@
     <div class="stat-card">
 
         <div class="stat-label">
-            CURRENT PHASE
+            当前阶段
         </div>
 
         <div class="stat-value">
-            Phase 1
+            第一阶段
         </div>
 
     </div>
@@ -397,50 +414,50 @@
 
 
 <!-- ==================== -->
-<!-- Fitness -->
+<!-- 健身数据 -->
 <!-- ==================== -->
 
 <div class="section-title">
-    FITNESS
+    健身数据
 </div>
 
 
 <section class="fitness-grid">
 
 
-    <!-- Today's Training -->
+    <!-- 今日训练 -->
 
     <div class="card">
 
         <h2>
-            Today's Training
+            今日训练
         </h2>
 
         <div class="training-item">
-            Push Day
+            Push 日
         </div>
 
         <div class="training-item">
-            Push up — 8 × 4
+            俯卧撑 — 8 × 4
         </div>
 
         <div class="training-item">
-            Lean Support — 30s × 3
+            斜身支撑 — 30 秒 × 3
         </div>
 
     </div>
 
 
-    <!-- Planche Status -->
+    <!-- 俄挺进度 -->
 
     <div class="card">
 
         <h2>
-            Planche Status
+            俄挺进度
         </h2>
 
         <p>
-            当前阶段：基础力量
+            当前阶段：基础力量阶段
         </p>
 
         <div class="progress-bar">
@@ -450,7 +467,7 @@
         </div>
 
         <div class="progress-text">
-            Phase 1 · Building Foundation
+            第一阶段 · 基础力量
         </div>
 
     </div>
@@ -460,11 +477,11 @@
 
 
 <!-- ==================== -->
-<!-- Recent Activity -->
+<!-- 最近训练 -->
 <!-- ==================== -->
 
 <div class="section-title">
-    RECENT ACTIVITY
+    最近训练
 </div>
 
 
@@ -474,7 +491,7 @@
     <div class="activity-row">
 
         <span>
-            Push Day
+            Push 日
         </span>
 
         <span class="activity-date">
@@ -487,7 +504,7 @@
     <div class="activity-row">
 
         <span>
-            Pull Day
+            Pull 日
         </span>
 
         <span class="activity-date">
@@ -500,7 +517,7 @@
     <div class="activity-row">
 
         <span>
-            Rest
+            休息
         </span>
 
         <span class="activity-date">
