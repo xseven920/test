@@ -1,279 +1,598 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>数据统计 - 我的俄挺之路</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                "Microsoft YaHei",
-                "PingFang SC",
-                Arial,
-                sans-serif;
-
-            background: #f7f8fa;
-            color: #111827;
-        }
-
-
-        nav {
-            height: 64px;
-
-            background: white;
-
-            border-bottom: 1px solid #e5e7eb;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 40px;
-        }
-
-
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-        }
-
-
-        .nav-links a {
-            text-decoration: none;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-
-        .nav-links a:hover {
-            color: #111827;
-        }
-
-
-        main {
-            max-width: 1100px;
-
-            margin: auto;
-
-            padding: 60px 30px;
-        }
-
-
-        h1 {
-            font-size: 42px;
-
-            margin: 0 0 12px 0;
-        }
-
-
-        .subtitle {
-            color: #6b7280;
-
-            margin-bottom: 40px;
-        }
-
-
-        .data-grid {
-
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 20px;
-        }
-
-
-        .data-card {
-
-            background: white;
-
-            border: 1px solid #e5e7eb;
-
-            border-radius: 16px;
-
-            padding: 30px;
-
-            min-height: 260px;
-        }
-
-
-        .data-card h2 {
-
-            margin-top: 0;
-
-            font-size: 20px;
-        }
-
-
-        .placeholder {
-
-            height: 150px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            color: #9ca3af;
-
-            background: #f9fafb;
-
-            border-radius: 12px;
-
-            margin-top: 20px;
-        }
-
-
-        @media (max-width: 700px) {
-
-            nav {
-                padding: 0 20px;
-            }
-
-            .nav-links {
-                gap: 15px;
-            }
-
-            main {
-                padding: 40px 20px;
-            }
-
-            .data-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 34px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据统计 - My Planche Journey</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+    background: #f5f7fa;
+    color: #222;
+}
+
+.nav {
+    background: #111;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav a {
+    color: #bbb;
+    text-decoration: none;
+    margin-left: 22px;
+}
+
+.nav a:hover {
+    color: white;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* 数据卡片 */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.stat-card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.stat-title {
+    color: #777;
+    font-size: 14px;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* 区块 */
+
+.section {
+    margin-top: 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.section h2 {
+    margin-top: 0;
+}
+
+/* 类型统计 */
+
+.type-row {
+    margin: 18px 0;
+}
+
+.type-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 12px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #111;
+    border-radius: 20px;
+}
+
+/* 动作统计 */
+
+.exercise-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.exercise-row:last-child {
+    border-bottom: none;
+}
+
+.empty {
+    color: #999;
+    text-align: center;
+    padding: 30px;
+}
+
+/* 手机 */
+
+@media (max-width: 800px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav {
+        padding: 15px;
+    }
+
+    .nav a {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 500px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
-
-<nav>
+<div class="nav">
 
     <div class="logo">
-        SEVENFLASH
+        My Planche Journey
     </div>
 
-    <div class="nav-links">
-
+    <div>
         <a href="index.html">首页</a>
-
         <a href="training.html">训练</a>
-
         <a href="data.html">数据</a>
-
         <a href="planche.html">俄挺</a>
-
     </div>
 
-</nav>
+</div>
 
 
-<main>
+<div class="container">
 
-
-    <h1>
-        数据统计
-    </h1>
-
+    <h1>数据统计</h1>
 
     <div class="subtitle">
-        用数据记录身体和训练的长期变化
+        自动统计你的训练数据
     </div>
 
 
-    <section class="data-grid">
+    <!-- 核心数据 -->
 
+    <div class="stats">
 
-        <div class="data-card">
-
-            <h2>
-                体重变化
-            </h2>
-
-            <div class="placeholder">
-                体重图表
+        <div class="stat-card">
+            <div class="stat-title">
+                累计训练天数
             </div>
 
+            <div class="stat-number" id="trainingDays">
+                0
+            </div>
         </div>
 
 
-        <div class="data-card">
-
-            <h2>
-                体脂变化
-            </h2>
-
-            <div class="placeholder">
-                体脂图表
+        <div class="stat-card">
+            <div class="stat-title">
+                本周训练次数
             </div>
 
+            <div class="stat-number" id="weekTraining">
+                0
+            </div>
         </div>
 
 
-        <div class="data-card">
-
-            <h2>
-                每周训练量
-            </h2>
-
-            <div class="placeholder">
-                训练量图表
+        <div class="stat-card">
+            <div class="stat-title">
+                累计训练次数
             </div>
 
+            <div class="stat-number" id="totalTraining">
+                0
+            </div>
         </div>
 
 
-        <div class="data-card">
-
-            <h2>
-                动作进步
-            </h2>
-
-            <div class="placeholder">
-                动作数据图表
+        <div class="stat-card">
+            <div class="stat-title">
+                训练动作数
             </div>
 
+            <div class="stat-number" id="totalExercises">
+                0
+            </div>
         </div>
 
+    </div>
 
-    </section>
+
+    <!-- 训练类型 -->
+
+    <div class="section">
+
+        <h2>训练类型</h2>
+
+        <div id="typeStats"></div>
+
+    </div>
 
 
-</main>
+    <!-- 动作统计 -->
 
+    <div class="section">
+
+        <h2>动作统计</h2>
+
+        <div id="exerciseStats"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   读取训练数据
+========================= */
+
+const trainings =
+    JSON.parse(localStorage.getItem("trainings")) || [];
+
+
+/* =========================
+   判断是否为休息
+========================= */
+
+function isRest(type) {
+
+    return type === "休息";
+
+}
+
+
+/* =========================
+   统计累计训练天数
+   同一天多个记录只算一天
+========================= */
+
+function calculateTrainingDays() {
+
+    const dates = new Set();
+
+    trainings.forEach(training => {
+
+        if (!isRest(training.type)) {
+            dates.add(training.date);
+        }
+
+    });
+
+    return dates.size;
+}
+
+
+/* =========================
+   获取本周开始日期
+========================= */
+
+function getWeekStart() {
+
+    const today = new Date();
+
+    const day = today.getDay();
+
+    /*
+       周一作为一周开始
+       Sunday = 0
+    */
+
+    const diff = day === 0 ? 6 : day - 1;
+
+    const monday = new Date(today);
+
+    monday.setDate(today.getDate() - diff);
+
+    monday.setHours(0, 0, 0, 0);
+
+    return monday;
+}
+
+
+/* =========================
+   统计本周训练次数
+========================= */
+
+function calculateWeekTraining() {
+
+    const monday = getWeekStart();
+
+    let count = 0;
+
+    trainings.forEach(training => {
+
+        if (isRest(training.type)) {
+            return;
+        }
+
+        const date = new Date(training.date + "T00:00:00");
+
+        if (date >= monday) {
+            count++;
+        }
+
+    });
+
+    return count;
+}
+
+
+/* =========================
+   统计训练动作数量
+========================= */
+
+function calculateExerciseCount() {
+
+    let count = 0;
+
+    trainings.forEach(training => {
+
+        if (!training.exercises) {
+            return;
+        }
+
+        count += training.exercises.length;
+
+    });
+
+    return count;
+}
+
+
+/* =========================
+   训练类型统计
+========================= */
+
+function calculateTypes() {
+
+    const result = {};
+
+    trainings.forEach(training => {
+
+        if (isRest(training.type)) {
+            return;
+        }
+
+        const type = training.type || "其他";
+
+        if (!result[type]) {
+            result[type] = 0;
+        }
+
+        result[type]++;
+
+    });
+
+    return result;
+}
+
+
+/* =========================
+   动作统计
+========================= */
+
+function calculateExercises() {
+
+    const result = {};
+
+    trainings.forEach(training => {
+
+        if (!training.exercises) {
+            return;
+        }
+
+        training.exercises.forEach(exercise => {
+
+            const name = exercise.name;
+
+            if (!name) {
+                return;
+            }
+
+            if (!result[name]) {
+
+                result[name] = {
+                    count: 0,
+                    sets: 0
+                };
+
+            }
+
+            result[name].count++;
+
+            const sets = Number(exercise.sets) || 0;
+
+            result[name].sets += sets;
+
+        });
+
+    });
+
+    return result;
+}
+
+
+/* =========================
+   显示基础数据
+========================= */
+
+document.getElementById("trainingDays").textContent =
+    calculateTrainingDays();
+
+document.getElementById("weekTraining").textContent =
+    calculateWeekTraining();
+
+document.getElementById("totalTraining").textContent =
+    trainings.filter(t => !isRest(t.type)).length;
+
+document.getElementById("totalExercises").textContent =
+    calculateExerciseCount();
+
+
+/* =========================
+   显示训练类型
+========================= */
+
+const typeStats =
+    document.getElementById("typeStats");
+
+const types = calculateTypes();
+
+const typeNames = Object.keys(types);
+
+if (typeNames.length === 0) {
+
+    typeStats.innerHTML =
+        '<div class="empty">暂无训练数据</div>';
+
+} else {
+
+    const maxType =
+        Math.max(...Object.values(types));
+
+    typeNames.forEach(type => {
+
+        const count = types[type];
+
+        const percent =
+            (count / maxType) * 100;
+
+        typeStats.innerHTML += `
+
+            <div class="type-row">
+
+                <div class="type-header">
+
+                    <span>${type}</span>
+
+                    <strong>${count} 次</strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width:${percent}%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   显示动作统计
+========================= */
+
+const exerciseStats =
+    document.getElementById("exerciseStats");
+
+const exercises =
+    calculateExercises();
+
+const exerciseNames =
+    Object.keys(exercises);
+
+
+/*
+   按训练次数从高到低排序
+*/
+
+exerciseNames.sort((a, b) => {
+
+    return exercises[b].count -
+           exercises[a].count;
+
+});
+
+
+if (exerciseNames.length === 0) {
+
+    exerciseStats.innerHTML =
+        '<div class="empty">暂无训练数据</div>';
+
+} else {
+
+    exerciseNames.forEach(name => {
+
+        const data =
+            exercises[name];
+
+        exerciseStats.innerHTML += `
+
+            <div class="exercise-row">
+
+                <span>
+                    ${name}
+                </span>
+
+                <span>
+                    ${data.count} 次训练
+                    · ${data.sets} 组
+                </span>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+</script>
 
 </body>
-
 </html>
-```
