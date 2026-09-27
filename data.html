@@ -1,179 +1,115 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>数据统计 - My Planche Journey</title>
 
+
+<!-- =========================================================
+     页面样式
+========================================================= -->
+
 <style>
 
-    .chart-note {
-    margin-top: 10px;
-    color: #888;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-    /* =========================
-   身体数据表单
+/* =========================
+   基础设置
 ========================= */
-
-.body-form {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 18px;
-
-    margin-top: 20px;
-
-}
-
-.form-item {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-}
-
-.form-item label {
-
-    font-size: 14px;
-
-    color: #666;
-
-}
-
-.form-item input {
-
-    padding: 12px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 10px;
-
-    font-size: 15px;
-
-}
-
-.save-button {
-
-    margin-top: 20px;
-
-    padding: 12px 22px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #111;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-}
-
-.save-button:hover {
-
-    opacity: 0.85;
-
-}
-
-
-@media (max-width: 800px) {
-
-    .body-form {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
-}
-
-
-@media (max-width: 500px) {
-
-    .body-form {
-
-        grid-template-columns: 1fr;
-
-    }
-
-}
 
 * {
     box-sizing: border-box;
 }
 
 body {
+
     margin: 0;
-    font-family: Arial, "Microsoft YaHei", sans-serif;
+
+    font-family:
+        Arial,
+        "Microsoft YaHei",
+        sans-serif;
+
     background: #f5f7fa;
+
     color: #222;
 }
+
 
 /* =========================
    导航
 ========================= */
 
 .nav {
+
     background: #111;
+
     padding: 18px 30px;
 
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     align-items: center;
 }
 
 .logo {
+
     color: white;
+
     font-size: 20px;
+
     font-weight: bold;
 }
 
 .nav a {
+
     color: #bbb;
+
     text-decoration: none;
+
     margin-left: 22px;
 }
 
 .nav a:hover {
+
     color: white;
 }
 
 
 /* =========================
-   页面
+   页面主体
 ========================= */
 
 .container {
+
     max-width: 1100px;
+
     margin: auto;
+
     padding: 40px 20px;
 }
 
 h1 {
+
     margin-bottom: 8px;
 }
 
 .subtitle {
+
     color: #777;
+
     margin-bottom: 30px;
 }
 
 
 /* =========================
-   数据卡片
+   数据统计卡片
 ========================= */
 
 .stats {
@@ -195,7 +131,8 @@ h1 {
     border-radius: 16px;
 
     box-shadow:
-        0 4px 15px rgba(0,0,0,0.05);
+        0 4px 15px
+        rgba(0, 0, 0, 0.05);
 }
 
 .stat-title {
@@ -230,7 +167,8 @@ h1 {
     border-radius: 16px;
 
     box-shadow:
-        0 4px 15px rgba(0,0,0,0.05);
+        0 4px 15px
+        rgba(0, 0, 0, 0.05);
 }
 
 .section h2 {
@@ -260,8 +198,22 @@ canvas {
 }
 
 
+/* 身体趋势图说明文字 */
+
+.chart-note {
+
+    margin-top: 10px;
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
 /* =========================
-   类型统计
+   训练类型统计
 ========================= */
 
 .type-row {
@@ -333,12 +285,177 @@ canvas {
 
 
 /* =========================
-   手机
+   身体数据表单
+========================= */
+
+.body-form {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+.form-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-item label {
+
+    font-size: 14px;
+
+    color: #666;
+}
+
+.form-item input {
+
+    padding: 12px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+.save-button {
+
+    margin-top: 20px;
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #111;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.save-button:hover {
+
+    opacity: 0.85;
+}
+
+
+/* =========================
+   当前身体数据
+========================= */
+
+.body-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+.body-value {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    margin-top: 8px;
+}
+
+.body-unit {
+
+    font-size: 14px;
+
+    color: #888;
+}
+
+
+/* =========================
+   身体数据历史表格
+========================= */
+
+.body-table {
+
+    width: 100%;
+
+    border-collapse:
+        collapse;
+
+    margin-top: 20px;
+}
+
+.body-table th,
+.body-table td {
+
+    padding: 14px 10px;
+
+    text-align: center;
+
+    border-bottom:
+        1px solid #eee;
+}
+
+.body-table th {
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+.delete-body {
+
+    border: none;
+
+    background: #f1f1f1;
+
+    padding: 6px 10px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.delete-body:hover {
+
+    background: #ddd;
+}
+
+
+/* =========================
+   手机端
 ========================= */
 
 @media (max-width: 800px) {
 
     .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .body-summary {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .body-form {
 
         grid-template-columns:
             repeat(2, 1fr);
@@ -355,6 +472,11 @@ canvas {
 
         font-size: 14px;
     }
+
+    .body-table {
+
+        font-size: 13px;
+    }
 }
 
 
@@ -365,94 +487,33 @@ canvas {
         grid-template-columns: 1fr;
     }
 
+    .body-summary {
+
+        grid-template-columns: 1fr;
+    }
+
+    .body-form {
+
+        grid-template-columns: 1fr;
+    }
+
     .chart-container {
 
         height: 250px;
     }
 }
 
-/* =========================
-   身体数据概览
-========================= */
-
-.body-summary {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-top: 20px;
-}
-
-.body-value {
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-.body-unit {
-    font-size: 14px;
-    color: #888;
-}
-
-
-/* =========================
-   身体数据表格
-========================= */
-
-.body-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.body-table th,
-.body-table td {
-    padding: 14px 10px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-}
-
-.body-table th {
-    color: #777;
-    font-size: 14px;
-}
-
-.delete-body {
-    border: none;
-    background: #f1f1f1;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.delete-body:hover {
-    background: #ddd;
-}
-
-
-@media (max-width: 800px) {
-
-    .body-summary {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .body-table {
-        font-size: 13px;
-    }
-
-}
-
-
-@media (max-width: 500px) {
-
-    .body-summary {
-        grid-template-columns: 1fr;
-    }
-
-}
 </style>
 
 
-<!-- Chart.js -->
+<!-- =========================================================
+     Chart.js
+     
+     用来生成：
+     1. 每周训练次数
+     2. 训练类型分布
+     3. 身体变化趋势
+========================================================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -462,15 +523,16 @@ canvas {
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      导航
-========================= -->
+========================================================= -->
 
 <div class="nav">
 
     <div class="logo">
         My Planche Journey
     </div>
+
 
     <div>
 
@@ -496,43 +558,43 @@ canvas {
 
 
 
+<!-- =========================================================
+     页面主体
+========================================================= -->
+
 <div class="container">
 
 
-<h1>
-    数据统计
-</h1>
-<!-- =========================
-     身体数据录入
-========================= -->
+    <h1>
+        数据统计
+    </h1>
 
-<div class="section">
 
-    <h2>记录身体数据</h2>
-<!-- =========================
-     当前身体数据
-========================= -->
+    <div class="subtitle">
+        记录、分析和观察自己的训练变化
+    </div>
 
-<div class="section">
 
-    <h2>当前身体数据</h2>
 
-    <div class="body-summary">
+    <!-- =====================================================
+         核心训练数据
+    ====================================================== -->
+
+    <div class="stats">
+
 
         <div class="stat-card">
 
             <div class="stat-title">
-                当前体重
+                累计训练天数
             </div>
 
             <div
-                class="body-value"
-                id="currentWeight">
-                --
-            </div>
+                class="stat-number"
+                id="trainingDays">
 
-            <div class="body-unit">
-                kg
+                0
+
             </div>
 
         </div>
@@ -541,17 +603,15 @@ canvas {
         <div class="stat-card">
 
             <div class="stat-title">
-                当前体脂率
+                本周训练次数
             </div>
 
             <div
-                class="body-value"
-                id="currentBodyFat">
-                --
-            </div>
+                class="stat-number"
+                id="weekTraining">
 
-            <div class="body-unit">
-                %
+                0
+
             </div>
 
         </div>
@@ -560,17 +620,15 @@ canvas {
         <div class="stat-card">
 
             <div class="stat-title">
-                当前腰围
+                累计训练次数
             </div>
 
             <div
-                class="body-value"
-                id="currentWaist">
-                --
-            </div>
+                class="stat-number"
+                id="totalTraining">
 
-            <div class="body-unit">
-                cm
+                0
+
             </div>
 
         </div>
@@ -579,380 +637,315 @@ canvas {
         <div class="stat-card">
 
             <div class="stat-title">
-                当前胸围
+                训练动作数
             </div>
 
             <div
-                class="body-value"
-                id="currentChest">
-                --
+                class="stat-number"
+                id="totalExercises">
+
+                0
+
             </div>
 
-            <div class="body-unit">
-                cm
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         身体数据录入
+         
+         注意：
+         这里必须是一个完整的 section。
+         不能把后面的内容放进这个 section。
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>
+            记录身体数据
+        </h2>
+
+
+        <div class="body-form">
+
+
+            <div class="form-item">
+
+                <label>
+                    日期
+                </label>
+
+                <input
+                    type="date"
+                    id="bodyDate"
+                >
+
+            </div>
+
+
+            <div class="form-item">
+
+                <label>
+                    体重（kg）
+                </label>
+
+                <input
+                    type="number"
+                    id="bodyWeight"
+                    step="0.1"
+                    placeholder="例如 70"
+                >
+
+            </div>
+
+
+            <div class="form-item">
+
+                <label>
+                    体脂率（%）
+                </label>
+
+                <input
+                    type="number"
+                    id="bodyFat"
+                    step="0.1"
+                    placeholder="例如 18"
+                >
+
+            </div>
+
+
+            <div class="form-item">
+
+                <label>
+                    腰围（cm）
+                </label>
+
+                <input
+                    type="number"
+                    id="bodyWaist"
+                    step="0.1"
+                    placeholder="例如 80"
+                >
+
+            </div>
+
+
+            <div class="form-item">
+
+                <label>
+                    胸围（cm）
+                </label>
+
+                <input
+                    type="number"
+                    id="bodyChest"
+                    step="0.1"
+                    placeholder="例如 95"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            onclick="saveBodyData()"
+            class="save-button">
+
+            保存身体数据
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         当前身体数据
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>
+            当前身体数据
+        </h2>
+
+
+        <div class="body-summary">
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    当前体重
+                </div>
+
+                <div
+                    class="body-value"
+                    id="currentWeight">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    kg
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    当前体脂率
+                </div>
+
+                <div
+                    class="body-value"
+                    id="currentBodyFat">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    当前腰围
+                </div>
+
+                <div
+                    class="body-value"
+                    id="currentWaist">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    cm
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    当前胸围
+                </div>
+
+                <div
+                    class="body-value"
+                    id="currentChest">
+
+                    --
+
+                </div>
+
+                <div class="body-unit">
+                    cm
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-</div>
 
-<!-- =========================
-     身体数据历史
-========================= -->
 
-<div class="section">
+    <!-- =====================================================
+         身体历史记录
+    ====================================================== -->
 
-    <h2>身体数据记录</h2>
+    <div class="section">
 
-    <div id="bodyTable"></div>
+        <h2>
+            身体数据记录
+        </h2>
 
-</div>
-
-<!-- =========================
-     身体综合趋势
-========================= -->
-
-<div class="section">
-
-    <h2>身体变化趋势</h2>
-
-    <div class="chart-container">
-
-        <canvas id="bodyTrendChart"></canvas>
+        <div id="bodyTable"></div>
 
     </div>
 
-     <p class="chart-note">
-        以每项指标第一次有效记录为 100%，用于比较不同身体指标的变化趋势。
-        鼠标悬停可查看实际数值。
-    </p>
-</div>
 
-function getFirstValidValue(data, key) {
-    const item = data.find(item =>
-        typeof item[key] === "number" &&
-        !Number.isNaN(item[key])
-    );
 
-    return item ? item[key] : null;
-}
-
-
-function createBodyTrendChart() {
-
-    const data = JSON.parse(localStorage.getItem("bodyData") || "[]");
-
-    if (data.length === 0) {
-        return;
-    }
-
-    // 按日期从早到晚排序
-    data.sort((a, b) => a.date.localeCompare(b.date));
-
-    const labels = data.map(item => item.date);
-
-    const metrics = [
-        {
-            key: "weight",
-            label: "体重",
-            unit: "kg",
-            color: "#2563eb"
-        },
-        {
-            key: "bodyFat",
-            label: "体脂率",
-            unit: "%",
-            color: "#dc2626"
-        },
-        {
-            key: "waist",
-            label: "腰围",
-            unit: "cm",
-            color: "#16a34a"
-        },
-        {
-            key: "chest",
-            label: "胸围",
-            unit: "cm",
-            color: "#f59e0b"
-        }
-    ];
-
-
-    const datasets = metrics.map(metric => {
-
-        // 找到该指标第一次有效记录
-        const baseValue = getFirstValidValue(data, metric.key);
-
-        // 保存真实数据
-        const rawValues = data.map(item => {
-
-            if (
-                item[metric.key] === null ||
-                item[metric.key] === undefined ||
-                item[metric.key] === ""
-            ) {
-                return null;
-            }
-
-            return Number(item[metric.key]);
-        });
-
-
-        // 转换成相对百分比
-        const normalizedValues = rawValues.map(value => {
-
-            if (value === null || baseValue === null) {
-                return null;
-            }
-
-            return Number(
-                ((value / baseValue) * 100).toFixed(2)
-            );
-        });
-
-
-        return {
-            label: metric.label,
-
-            data: normalizedValues,
-
-            // 保存真实数据，供 tooltip 使用
-            rawValues: rawValues,
-
-            unit: metric.unit,
-
-            borderColor: metric.color,
-            backgroundColor: metric.color,
-
-            borderWidth: 2,
-
-            pointRadius: 3,
-            pointHoverRadius: 5,
-
-            tension: 0.3,
-
-            spanGaps: true
-        };
-    });
-
-
-    const ctx = document
-        .getElementById("bodyTrendChart")
-        .getContext("2d");
-
-
-    new Chart(ctx, {
-
-        type: "line",
-
-        data: {
-            labels: labels,
-            datasets: datasets
-        },
-
-        options: {
-
-            responsive: true,
-
-            maintainAspectRatio: false,
-
-            interaction: {
-                mode: "index",
-                intersect: false
-            },
-
-            plugins: {
-
-                legend: {
-                    position: "top"
-                },
-
-                tooltip: {
-
-                    callbacks: {
-
-                        label: function(context) {
-
-                            const dataset = context.dataset;
-
-                            const rawValue =
-                                dataset.rawValues[context.dataIndex];
-
-
-                            if (
-                                rawValue === null ||
-                                rawValue === undefined
-                            ) {
-                                return dataset.label + ": 暂无数据";
-                            }
-
-
-                            const relativeValue =
-                                context.parsed.y;
-
-
-                            return (
-                                dataset.label +
-                                ": " +
-                                rawValue +
-                                " " +
-                                dataset.unit +
-                                "（" +
-                                relativeValue.toFixed(1) +
-                                "%）"
-                            );
-                        }
-                    }
-                }
-            },
-
-
-            scales: {
-
-                y: {
-
-                    title: {
-                        display: true,
-                        text: "相对初始值（%）"
-                    },
-
-                    ticks: {
-                        callback: function(value) {
-                            return value + "%";
-                        }
-                    }
-                }
-
-            }
-        }
-    });
-}
-
-
-createBodyTrendChart();
-
-    
-</div>
-
-    <div class="body-form">
-
-        <div class="form-item">
-
-            <label>
-                日期
-            </label>
-
-            <input
-                type="date"
-                id="bodyDate"
-            >
+    <!-- =====================================================
+         身体综合趋势图
+         
+         四项身体数据合并到一张图。
+         
+         因为：
+         体重 = kg
+         体脂率 = %
+         腰围 = cm
+         胸围 = cm
+         
+         单位和数值范围不同，
+         所以这里不直接把原始数值放在同一个 Y 轴。
+         
+         每一项数据都以自己的第一次有效记录 = 100%。
+         
+         例如：
+         70kg → 68kg
+         变化就是 97.1%
+         
+         这样主要观察的是「变化趋势」。
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>
+            身体变化趋势
+        </h2>
+
+
+        <div class="chart-container">
+
+            <canvas id="bodyTrendChart"></canvas>
 
         </div>
 
 
-        <div class="form-item">
+        <p class="chart-note">
 
-            <label>
-                体重（kg）
-            </label>
+            以每项指标第一次有效记录为 100%，
+            用于比较不同身体指标的变化趋势。
+            鼠标悬停可查看实际数值。
 
-            <input
-                type="number"
-                id="bodyWeight"
-                step="0.1"
-                placeholder="例如 70"
-            >
-
-        </div>
-
-
-        <div class="form-item">
-
-            <label>
-                体脂率（%）
-            </label>
-
-            <input
-                type="number"
-                id="bodyFat"
-                step="0.1"
-                placeholder="例如 18"
-            >
-
-        </div>
-
-
-        <div class="form-item">
-
-            <label>
-                腰围（cm）
-            </label>
-
-            <input
-                type="number"
-                id="bodyWaist"
-                step="0.1"
-                placeholder="例如 80"
-            >
-
-        </div>
-
-
-        <div class="form-item">
-
-            <label>
-                胸围（cm）
-            </label>
-
-            <input
-                type="number"
-                id="bodyChest"
-                step="0.1"
-                placeholder="例如 95"
-            >
-
-        </div>
+        </p>
 
     </div>
 
 
-    <button
-        onclick="saveBodyData()"
-        class="save-button">
 
-        保存身体数据
+    <!-- =====================================================
+         每周训练次数
+    ====================================================== -->
 
-    </button>
+    <div class="section">
 
-</div>
-    
-<div class="subtitle">
-    记录、分析和观察自己的训练变化
-</div>
+        <h2>
+            每周训练次数
+        </h2>
 
 
+        <div class="chart-container">
 
-<!-- =========================
-     核心数据
-========================= -->
-
-<div class="stats">
-
-
-    <div class="stat-card">
-
-        <div class="stat-title">
-            累计训练天数
-        </div>
-
-        <div
-            class="stat-number"
-            id="trainingDays">
-
-            0
+            <canvas id="weeklyChart"></canvas>
 
         </div>
 
@@ -960,35 +953,20 @@ createBodyTrendChart();
 
 
 
-    <div class="stat-card">
+    <!-- =====================================================
+         训练类型分布
+    ====================================================== -->
 
-        <div class="stat-title">
-            本周训练次数
-        </div>
+    <div class="section">
 
-        <div
-            class="stat-number"
-            id="weekTraining">
-
-            0
-
-        </div>
-
-    </div>
+        <h2>
+            训练类型分布
+        </h2>
 
 
+        <div class="chart-container">
 
-    <div class="stat-card">
-
-        <div class="stat-title">
-            累计训练次数
-        </div>
-
-        <div
-            class="stat-number"
-            id="totalTraining">
-
-            0
+            <canvas id="typeChart"></canvas>
 
         </div>
 
@@ -996,90 +974,53 @@ createBodyTrendChart();
 
 
 
-    <div class="stat-card">
+    <!-- =====================================================
+         动作统计
+    ====================================================== -->
 
-        <div class="stat-title">
-            训练动作数
-        </div>
+    <div class="section">
 
-        <div
-            class="stat-number"
-            id="totalExercises">
+        <h2>
+            动作统计
+        </h2>
 
-            0
-
-        </div>
+        <div id="exerciseStats"></div>
 
     </div>
 
-</div>
-
-
-
-<!-- =========================
-     每周训练次数
-========================= -->
-
-<div class="section">
-
-    <h2>
-        每周训练次数
-    </h2>
-
-    <div class="chart-container">
-
-        <canvas id="weeklyChart"></canvas>
-
-    </div>
 
 </div>
 
 
 
-<!-- =========================
-     训练类型
-========================= -->
-
-<div class="section">
-
-    <h2>
-        训练类型分布
-    </h2>
-
-    <div class="chart-container">
-
-        <canvas id="typeChart"></canvas>
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================
-     动作统计
-========================= -->
-
-<div class="section">
-
-    <h2>
-        动作统计
-    </h2>
-
-    <div id="exerciseStats"></div>
-
-</div>
-
-
-</div>
-
-
+<!-- =========================================================
+     JavaScript
+========================================================= -->
 
 <script>
 
-    /* ==================================================
-   身体数据
-================================================== */
+
+/* =========================================================
+   第一部分：身体数据
+========================================================= */
+
+
+/*
+    从 localStorage 读取身体数据。
+
+    数据格式：
+
+    [
+        {
+            id: 123456,
+            date: "2026-09-27",
+            weight: 70,
+            bodyFat: 18,
+            waist: 80,
+            chest: 95
+        }
+    ]
+*/
 
 let bodyData =
     JSON.parse(
@@ -1087,14 +1028,14 @@ let bodyData =
     ) || [];
 
 
-/* ==================================================
-   设置今天日期
-================================================== */
+
+/* =========================================================
+   设置身体数据日期为今天
+========================================================= */
 
 function setBodyDate() {
 
-    const today =
-        new Date();
+    const today = new Date();
 
     const year =
         today.getFullYear();
@@ -1109,6 +1050,7 @@ function setBodyDate() {
             today.getDate()
         ).padStart(2, "0");
 
+
     document.getElementById(
         "bodyDate"
     ).value =
@@ -1120,9 +1062,10 @@ function setBodyDate() {
 setBodyDate();
 
 
-/* ==================================================
+
+/* =========================================================
    保存身体数据
-================================================== */
+========================================================= */
 
 function saveBodyData() {
 
@@ -1156,20 +1099,20 @@ function saveBodyData() {
         ).value;
 
 
+
     /* 日期必须填写 */
 
     if (!date) {
 
-        alert(
-            "请选择日期"
-        );
+        alert("请选择日期");
 
         return;
 
     }
 
 
-    /* 至少填写一项 */
+
+    /* 至少填写一个身体指标 */
 
     if (
         weight === "" &&
@@ -1186,6 +1129,11 @@ function saveBodyData() {
 
     }
 
+
+
+    /*
+        创建一条新的身体数据记录
+    */
 
     const record = {
 
@@ -1216,17 +1164,20 @@ function saveBodyData() {
     };
 
 
-    bodyData.push(
-        record
-    );
 
+    bodyData.push(record);
+
+
+
+    /*
+        保存到浏览器 localStorage
+    */
 
     localStorage.setItem(
         "bodyData",
-        JSON.stringify(
-            bodyData
-        )
+        JSON.stringify(bodyData)
     );
+
 
 
     alert(
@@ -1234,9 +1185,8 @@ function saveBodyData() {
     );
 
 
-    /*
-       清空输入
-    */
+
+    /* 清空输入框 */
 
     document.getElementById(
         "bodyWeight"
@@ -1254,17 +1204,44 @@ function saveBodyData() {
         "bodyChest"
     ).value = "";
 
+
+
+    /*
+        保存后立即刷新页面上的数据。
+
+        这里非常重要：
+
+        不刷新页面也能看到最新记录。
+    */
+
+    renderCurrentBodyData();
+
+    renderBodyTable();
+
+    createBodyTrendChart();
+
 }
 
-/* ==================================================
+
+
+/* =========================================================
    获取最新身体数据
-================================================== */
+========================================================= */
 
 function getLatestBodyData() {
 
     if (bodyData.length === 0) {
+
         return null;
+
     }
+
+
+    /*
+        根据日期排序。
+
+        日期最新的排在前面。
+    */
 
     const sorted =
         [...bodyData].sort(
@@ -1273,23 +1250,29 @@ function getLatestBodyData() {
                 new Date(a.date)
         );
 
+
     return sorted[0];
 
 }
 
 
-/* ==================================================
+
+/* =========================================================
    显示当前身体数据
-================================================== */
+========================================================= */
 
 function renderCurrentBodyData() {
 
     const latest =
         getLatestBodyData();
 
+
     if (!latest) {
+
         return;
+
     }
+
 
 
     document.getElementById(
@@ -1326,9 +1309,10 @@ function renderCurrentBodyData() {
 }
 
 
-/* ==================================================
+
+/* =========================================================
    显示身体数据历史
-================================================== */
+========================================================= */
 
 function renderBodyTable() {
 
@@ -1348,8 +1332,9 @@ function renderBodyTable() {
     }
 
 
+
     /*
-       最新日期排在最前面
+        最新日期排在最前面
     */
 
     const sorted =
@@ -1358,6 +1343,7 @@ function renderBodyTable() {
                 new Date(b.date) -
                 new Date(a.date)
         );
+
 
 
     let html = `
@@ -1389,67 +1375,67 @@ function renderBodyTable() {
     `;
 
 
-    sorted.forEach(
-        record => {
 
-            html += `
+    sorted.forEach(record => {
 
-                <tr>
+        html += `
 
-                    <td>
-                        ${record.date}
-                    </td>
+            <tr>
 
-                    <td>
-                        ${
-                            record.weight !== null
-                                ? record.weight + " kg"
-                                : "--"
-                        }
-                    </td>
+                <td>
+                    ${record.date}
+                </td>
 
-                    <td>
-                        ${
-                            record.bodyFat !== null
-                                ? record.bodyFat + " %"
-                                : "--"
-                        }
-                    </td>
+                <td>
+                    ${
+                        record.weight !== null
+                            ? record.weight + " kg"
+                            : "--"
+                    }
+                </td>
 
-                    <td>
-                        ${
-                            record.waist !== null
-                                ? record.waist + " cm"
-                                : "--"
-                        }
-                    </td>
+                <td>
+                    ${
+                        record.bodyFat !== null
+                            ? record.bodyFat + " %"
+                            : "--"
+                    }
+                </td>
 
-                    <td>
-                        ${
-                            record.chest !== null
-                                ? record.chest + " cm"
-                                : "--"
-                        }
-                    </td>
+                <td>
+                    ${
+                        record.waist !== null
+                            ? record.waist + " cm"
+                            : "--"
+                    }
+                </td>
 
-                    <td>
+                <td>
+                    ${
+                        record.chest !== null
+                            ? record.chest + " cm"
+                            : "--"
+                    }
+                </td>
 
-                        <button
-                            class="delete-body"
-                            onclick="deleteBodyData(${record.id})">
+                <td>
 
-                            删除
+                    <button
+                        class="delete-body"
+                        onclick="deleteBodyData(${record.id})">
 
-                        </button>
+                        删除
 
-                    </td>
+                    </button>
 
-                </tr>
+                </td>
 
-            `;
+            </tr>
 
-        }
-    );
+        `;
+
+    });
+
 
 
     html += `
@@ -1461,14 +1447,16 @@ function renderBodyTable() {
     `;
 
 
+
     container.innerHTML = html;
 
 }
 
 
-/* ==================================================
+
+/* =========================================================
    删除身体数据
-================================================== */
+========================================================= */
 
 function deleteBodyData(id) {
 
@@ -1479,8 +1467,11 @@ function deleteBodyData(id) {
 
 
     if (!confirmDelete) {
+
         return;
+
     }
+
 
 
     bodyData =
@@ -1489,30 +1480,35 @@ function deleteBodyData(id) {
         );
 
 
+
     localStorage.setItem(
         "bodyData",
         JSON.stringify(bodyData)
     );
 
 
+
+    /*
+        删除后同时更新：
+
+        1. 当前身体数据
+        2. 历史记录
+        3. 趋势图
+    */
+
     renderCurrentBodyData();
 
     renderBodyTable();
 
+    createBodyTrendChart();
+
 }
 
 
-/* ==================================================
-   初始化身体数据
-================================================== */
 
-renderCurrentBodyData();
-
-renderBodyTable();
-
-/* ==================================================
-   身体数据排序
-================================================== */
+/* =========================================================
+   获取排序后的身体数据
+========================================================= */
 
 function getSortedBodyData() {
 
@@ -1525,10 +1521,473 @@ function getSortedBodyData() {
 }
 
 
-    
-/* ==================================================
-   读取训练数据
-================================================== */
+
+/* =========================================================
+   获取某项指标的第一次有效数据
+========================================================= */
+
+function getFirstValidValue(data, key) {
+
+    const item =
+        data.find(item =>
+
+            typeof item[key] === "number" &&
+
+            !Number.isNaN(item[key])
+
+        );
+
+
+    return item
+        ? item[key]
+        : null;
+
+}
+
+
+
+/* =========================================================
+   创建身体综合趋势图
+========================================================= */
+
+let bodyTrendChart = null;
+
+
+function createBodyTrendChart() {
+
+
+    /*
+        如果之前已经创建过图表，
+        先销毁旧图表。
+
+        否则每次保存数据时重新创建，
+        Chart.js 会报：
+
+        "Canvas is already in use"
+
+    */
+
+    if (bodyTrendChart) {
+
+        bodyTrendChart.destroy();
+
+        bodyTrendChart = null;
+
+    }
+
+
+
+    const data =
+        getSortedBodyData();
+
+
+
+    /*
+        没有数据时直接结束。
+    */
+
+    if (data.length === 0) {
+
+        return;
+
+    }
+
+
+
+    /*
+        X 轴 = 日期
+    */
+
+    const labels =
+        data.map(
+            item => item.date
+        );
+
+
+
+    /*
+        四项身体指标。
+
+        color：
+        只是为了让四条线更容易区分。
+    */
+
+    const metrics = [
+
+        {
+            key: "weight",
+            label: "体重",
+            unit: "kg",
+            color: "#2563eb"
+        },
+
+        {
+            key: "bodyFat",
+            label: "体脂率",
+            unit: "%",
+            color: "#dc2626"
+        },
+
+        {
+            key: "waist",
+            label: "腰围",
+            unit: "cm",
+            color: "#16a34a"
+        },
+
+        {
+            key: "chest",
+            label: "胸围",
+            unit: "cm",
+            color: "#f59e0b"
+        }
+
+    ];
+
+
+
+    /*
+        为四项指标分别生成数据集。
+    */
+
+    const datasets =
+        metrics.map(metric => {
+
+
+            /*
+                找到该指标第一次出现的有效数值。
+
+                例如：
+
+                体重：
+                70 → 69 → 68
+
+                那么 70 就是 100%。
+            */
+
+            const baseValue =
+                getFirstValidValue(
+                    data,
+                    metric.key
+                );
+
+
+
+            /*
+                保存原始数据。
+
+                Tooltip 会使用这里的数据，
+                显示真正的 kg / % / cm。
+            */
+
+            const rawValues =
+                data.map(item => {
+
+                    if (
+                        item[metric.key] === null ||
+                        item[metric.key] === undefined ||
+                        item[metric.key] === ""
+                    ) {
+
+                        return null;
+
+                    }
+
+
+                    return Number(
+                        item[metric.key]
+                    );
+
+                });
+
+
+
+            /*
+                将原始数据转换为相对百分比。
+
+                公式：
+
+                当前值 ÷ 第一次有效值 × 100
+
+                例如：
+
+                68 ÷ 70 × 100
+                = 97.14%
+            */
+
+            const normalizedValues =
+                rawValues.map(value => {
+
+                    if (
+                        value === null ||
+                        baseValue === null
+                    ) {
+
+                        return null;
+
+                    }
+
+
+                    return Number(
+                        (
+                            value /
+                            baseValue *
+                            100
+                        ).toFixed(2)
+                    );
+
+                });
+
+
+
+            return {
+
+                label:
+                    metric.label,
+
+                data:
+                    normalizedValues,
+
+                /*
+                    原始数据不直接画出来，
+                    专门用于 Tooltip。
+                */
+
+                rawValues:
+                    rawValues,
+
+                unit:
+                    metric.unit,
+
+                borderColor:
+                    metric.color,
+
+                backgroundColor:
+                    metric.color,
+
+                borderWidth: 2,
+
+                pointRadius: 3,
+
+                pointHoverRadius: 5,
+
+                tension: 0.3,
+
+                spanGaps: true
+
+            };
+
+        });
+
+
+
+    /*
+        获取 Canvas
+    */
+
+    const canvas =
+        document.getElementById(
+            "bodyTrendChart"
+        );
+
+
+    if (!canvas) {
+
+        return;
+
+    }
+
+
+
+    /*
+        创建综合趋势图
+    */
+
+    bodyTrendChart =
+        new Chart(
+            canvas,
+            {
+
+                type: "line",
+
+
+                data: {
+
+                    labels:
+                        labels,
+
+                    datasets:
+                        datasets
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+
+                    /*
+                        鼠标移动到某个日期时，
+                        四条线一起显示。
+                    */
+
+                    interaction: {
+
+                        mode: "index",
+
+                        intersect: false
+
+                    },
+
+
+                    plugins: {
+
+                        /*
+                            图例放在顶部。
+                            
+                            点击图例可以隐藏/
+                            显示对应指标。
+                        */
+
+                        legend: {
+
+                            position: "top"
+
+                        },
+
+
+                        /*
+                            鼠标悬停时显示真实数据。
+                        */
+
+                        tooltip: {
+
+                            callbacks: {
+
+                                label:
+                                    function(context) {
+
+                                        const dataset =
+                                            context.dataset;
+
+
+                                        const rawValue =
+                                            dataset.rawValues[
+                                                context.dataIndex
+                                            ];
+
+
+                                        if (
+                                            rawValue === null ||
+                                            rawValue === undefined
+                                        ) {
+
+                                            return (
+                                                dataset.label +
+                                                ": 暂无数据"
+                                            );
+
+                                        }
+
+
+                                        const relativeValue =
+                                            context.parsed.y;
+
+
+                                        return (
+
+                                            dataset.label +
+
+                                            ": " +
+
+                                            rawValue +
+
+                                            " " +
+
+                                            dataset.unit +
+
+                                            "（" +
+
+                                            relativeValue.toFixed(1) +
+
+                                            "%）"
+
+                                        );
+
+                                    }
+
+                            }
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        y: {
+
+                            title: {
+
+                                display: true,
+
+                                text:
+                                    "相对初始值（%）"
+
+                            },
+
+
+                            ticks: {
+
+                                callback:
+                                    function(value) {
+
+                                        return (
+                                            value +
+                                            "%"
+                                        );
+
+                                    }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        );
+
+}
+
+
+
+/* =========================================================
+   初始化身体数据页面
+========================================================= */
+
+renderCurrentBodyData();
+
+renderBodyTable();
+
+createBodyTrendChart();
+
+
+
+/* =========================================================
+   第二部分：训练数据
+========================================================= */
+
+
+/*
+    从 localStorage 读取训练数据。
+*/
 
 const trainings =
     JSON.parse(
@@ -1537,9 +1996,9 @@ const trainings =
 
 
 
-/* ==================================================
-   是否休息
-================================================== */
+/* =========================================================
+   判断是否为休息日
+========================================================= */
 
 function isRest(type) {
 
@@ -1549,18 +2008,21 @@ function isRest(type) {
 
 
 
-/* ==================================================
+/* =========================================================
    累计训练天数
-================================================== */
+========================================================= */
 
 function calculateTrainingDays() {
 
     const dates =
         new Set();
 
+
     trainings.forEach(training => {
 
-        if (!isRest(training.type)) {
+        if (
+            !isRest(training.type)
+        ) {
 
             dates.add(
                 training.date
@@ -1570,35 +2032,50 @@ function calculateTrainingDays() {
 
     });
 
+
     return dates.size;
 
 }
 
 
 
-/* ==================================================
-   获取本周开始日期
-================================================== */
+/* =========================================================
+   获取本周星期一
+========================================================= */
 
 function getWeekStart() {
 
     const today =
         new Date();
 
+
     const day =
         today.getDay();
+
+
+    /*
+        JavaScript：
+
+        Sunday = 0
+        Monday = 1
+        ...
+        Saturday = 6
+    */
 
     const diff =
         day === 0
             ? 6
             : day - 1;
 
+
     const monday =
         new Date(today);
+
 
     monday.setDate(
         today.getDate() - diff
     );
+
 
     monday.setHours(
         0,
@@ -1607,22 +2084,25 @@ function getWeekStart() {
         0
     );
 
+
     return monday;
 
 }
 
 
 
-/* ==================================================
+/* =========================================================
    本周训练次数
-================================================== */
+========================================================= */
 
 function calculateWeekTraining() {
 
     const monday =
         getWeekStart();
 
+
     let count = 0;
+
 
     trainings.forEach(training => {
 
@@ -1634,11 +2114,13 @@ function calculateWeekTraining() {
 
         }
 
+
         const date =
             new Date(
-                training.date
-                + "T00:00:00"
+                training.date +
+                "T00:00:00"
             );
+
 
         if (
             date >= monday
@@ -1650,19 +2132,21 @@ function calculateWeekTraining() {
 
     });
 
+
     return count;
 
 }
 
 
 
-/* ==================================================
-   动作数量
-================================================== */
+/* =========================================================
+   训练动作数量
+========================================================= */
 
 function calculateExerciseCount() {
 
     let count = 0;
+
 
     trainings.forEach(training => {
 
@@ -1674,10 +2158,12 @@ function calculateExerciseCount() {
 
         }
 
+
         count +=
             training.exercises.length;
 
     });
+
 
     return count;
 
@@ -1685,13 +2171,14 @@ function calculateExerciseCount() {
 
 
 
-/* ==================================================
-   训练类型
-================================================== */
+/* =========================================================
+   训练类型统计
+========================================================= */
 
 function calculateTypes() {
 
     const result = {};
+
 
     trainings.forEach(training => {
 
@@ -1703,8 +2190,11 @@ function calculateTypes() {
 
         }
 
+
         const type =
-            training.type || "其他";
+            training.type ||
+            "其他";
+
 
         if (
             !result[type]
@@ -1714,9 +2204,11 @@ function calculateTypes() {
 
         }
 
+
         result[type]++;
 
     });
+
 
     return result;
 
@@ -1724,13 +2216,14 @@ function calculateTypes() {
 
 
 
-/* ==================================================
+/* =========================================================
    动作统计
-================================================== */
+========================================================= */
 
 function calculateExercises() {
 
     const result = {};
+
 
     trainings.forEach(training => {
 
@@ -1742,17 +2235,21 @@ function calculateExercises() {
 
         }
 
+
         training.exercises.forEach(
             exercise => {
 
+
                 const name =
                     exercise.name;
+
 
                 if (!name) {
 
                     return;
 
                 }
+
 
                 if (!result[name]) {
 
@@ -1766,7 +2263,17 @@ function calculateExercises() {
 
                 }
 
+
+                /*
+                    count：
+                    这个动作出现在多少次训练中。
+
+                    sets：
+                    这个动作累计完成多少组。
+                */
+
                 result[name].count++;
+
 
                 result[name].sets +=
                     Number(
@@ -1778,15 +2285,16 @@ function calculateExercises() {
 
     });
 
+
     return result;
 
 }
 
 
 
-/* ==================================================
-   页面顶部数据
-================================================== */
+/* =========================================================
+   页面顶部训练数据
+========================================================= */
 
 document.getElementById(
     "trainingDays"
@@ -1803,6 +2311,7 @@ document.getElementById(
 document.getElementById(
     "totalTraining"
 ).textContent =
+
     trainings.filter(
         t => !isRest(t.type)
     ).length;
@@ -1815,13 +2324,14 @@ document.getElementById(
 
 
 
-/* ==================================================
-   每周训练统计
-================================================== */
+/* =========================================================
+   第三部分：每周训练统计
+========================================================= */
 
 function calculateWeeklyData() {
 
     const result = {};
+
 
     trainings.forEach(training => {
 
@@ -1833,39 +2343,46 @@ function calculateWeeklyData() {
 
         }
 
+
         const date =
             new Date(
-                training.date
-                + "T00:00:00"
+                training.date +
+                "T00:00:00"
             );
 
+
         /*
-           获取这一周的周一
+            找到这一天所在周的星期一。
         */
 
         const day =
             date.getDay();
+
 
         const diff =
             day === 0
                 ? 6
                 : day - 1;
 
+
         const monday =
             new Date(date);
+
 
         monday.setDate(
             date.getDate() - diff
         );
 
+
         /*
-           转成 YYYY-MM-DD
+            转成 YYYY-MM-DD。
         */
 
         const key =
             monday
                 .toISOString()
                 .split("T")[0];
+
 
         if (
             !result[key]
@@ -1875,13 +2392,15 @@ function calculateWeeklyData() {
 
         }
 
+
         result[key]++;
 
     });
 
 
+
     /*
-       按日期排序
+        周一日期从早到晚排序。
     */
 
     const keys =
@@ -1891,26 +2410,33 @@ function calculateWeeklyData() {
 
     return {
 
-        labels: keys.map(
-            key => {
+        labels:
+            keys.map(key => {
 
                 const date =
                     new Date(
-                        key + "T00:00:00"
+                        key +
+                        "T00:00:00"
                     );
 
+
                 return (
-                    (date.getMonth() + 1)
-                    + "/"
-                    + date.getDate()
+
+                    (date.getMonth() + 1) +
+
+                    "/" +
+
+                    date.getDate()
+
                 );
 
-            }
-        ),
+            }),
 
-        values: keys.map(
-            key => result[key]
-        )
+
+        values:
+            keys.map(
+                key => result[key]
+            )
 
     };
 
@@ -1918,21 +2444,24 @@ function calculateWeeklyData() {
 
 
 
-/* ==================================================
+/* =========================================================
    创建每周训练图
-================================================== */
+========================================================= */
 
 const weeklyData =
     calculateWeeklyData();
 
 
 new Chart(
+
     document.getElementById(
         "weeklyChart"
     ),
+
     {
 
         type: "bar",
+
 
         data: {
 
@@ -1955,11 +2484,13 @@ new Chart(
 
         },
 
+
         options: {
 
             responsive: true,
 
             maintainAspectRatio: false,
+
 
             scales: {
 
@@ -1980,13 +2511,14 @@ new Chart(
         }
 
     }
+
 );
 
 
 
-/* ==================================================
-   创建训练类型图
-================================================== */
+/* =========================================================
+   第四部分：训练类型分布
+========================================================= */
 
 const typeData =
     calculateTypes();
@@ -1994,6 +2526,7 @@ const typeData =
 
 const typeNames =
     Object.keys(typeData);
+
 
 
 new Chart(
@@ -2005,6 +2538,7 @@ new Chart(
     {
 
         type: "doughnut",
+
 
         data: {
 
@@ -2027,6 +2561,7 @@ new Chart(
 
         },
 
+
         options: {
 
             responsive: true,
@@ -2041,9 +2576,9 @@ new Chart(
 
 
 
-/* ==================================================
-   动作统计
-================================================== */
+/* =========================================================
+   第五部分：动作统计
+========================================================= */
 
 const exerciseStats =
     document.getElementById(
@@ -2059,9 +2594,9 @@ const exerciseNames =
     Object.keys(exercises);
 
 
+
 /*
-   从训练次数最多
-   排到最少
+    按训练次数从多到少排序。
 */
 
 exerciseNames.sort(
@@ -2069,6 +2604,7 @@ exerciseNames.sort(
         exercises[b].count -
         exercises[a].count
 );
+
 
 
 if (
@@ -2080,11 +2616,14 @@ if (
 
 } else {
 
+
     exerciseNames.forEach(
         name => {
 
+
             const data =
                 exercises[name];
+
 
             exerciseStats.innerHTML += `
 
@@ -2095,8 +2634,15 @@ if (
                     </span>
 
                     <span>
-                        ${data.count} 次训练
-                        · ${data.sets} 组
+
+                        ${data.count}
+                        次训练
+
+                        ·
+
+                        ${data.sets}
+                        组
+
                     </span>
 
                 </div>
@@ -2111,5 +2657,7 @@ if (
 
 </script>
 
+
 </body>
+
 </html>
