@@ -28,11 +28,14 @@
                 sans-serif;
 
             background: #f7f8fa;
+
             color: #111827;
         }
 
 
-        /* 导航 */
+        /* ==================== */
+        /* 导航栏 */
+        /* ==================== */
 
         nav {
             height: 64px;
@@ -42,35 +45,48 @@
             border-bottom: 1px solid #e5e7eb;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             padding: 0 40px;
         }
 
+
         .logo {
             font-size: 20px;
+
             font-weight: bold;
+
             letter-spacing: 1px;
         }
 
+
         .nav-links {
             display: flex;
+
             gap: 28px;
         }
 
+
         .nav-links a {
             text-decoration: none;
+
             color: #6b7280;
+
             font-size: 14px;
         }
+
 
         .nav-links a:hover {
             color: #111827;
         }
 
 
-        /* 主体 */
+        /* ==================== */
+        /* 页面 */
+        /* ==================== */
 
         main {
             max-width: 1100px;
@@ -85,18 +101,158 @@
             margin-bottom: 40px;
         }
 
+
         .page-title h1 {
             font-size: 42px;
+
             margin: 0 0 12px 0;
         }
 
+
         .page-title p {
             color: #6b7280;
+
             margin: 0;
         }
 
 
-        /* 训练卡片 */
+        /* ==================== */
+        /* 添加训练 */
+        /* ==================== */
+
+        .form-card {
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 30px;
+
+            margin-bottom: 40px;
+        }
+
+
+        .form-card h2 {
+
+            margin-top: 0;
+
+            font-size: 20px;
+        }
+
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+        }
+
+
+        label {
+
+            font-size: 14px;
+
+            color: #4b5563;
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-family: inherit;
+
+            outline: none;
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #111827;
+        }
+
+
+        textarea {
+
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+
+        .save-button {
+
+            margin-top: 20px;
+
+            padding: 12px 24px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #111827;
+
+            color: white;
+
+            font-size: 14px;
+
+            cursor: pointer;
+        }
+
+
+        .save-button:hover {
+
+            opacity: 0.85;
+        }
+
+
+        /* ==================== */
+        /* 训练记录 */
+        /* ==================== */
+
+        .section-title {
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            color: #6b7280;
+
+            margin-bottom: 15px;
+        }
+
 
         .training-card {
 
@@ -125,13 +281,17 @@
 
 
         .training-header h2 {
+
             margin: 0;
+
             font-size: 20px;
         }
 
 
         .training-date {
+
             color: #6b7280;
+
             font-size: 14px;
         }
 
@@ -149,38 +309,94 @@
 
 
         .exercise:last-child {
+
             border-bottom: none;
         }
 
 
         .exercise-name {
+
             font-weight: 500;
         }
 
 
         .exercise-value {
+
             color: #6b7280;
         }
 
 
+        .delete-button {
+
+            margin-top: 20px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #9ca3af;
+
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+
+        .delete-button:hover {
+
+            color: #111827;
+        }
+
+
+        .empty {
+
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #9ca3af;
+        }
+
+
+        /* ==================== */
         /* 手机 */
+        /* ==================== */
 
         @media (max-width: 700px) {
 
             nav {
+
                 padding: 0 20px;
             }
 
+
             .nav-links {
+
                 gap: 15px;
             }
 
+
             main {
+
                 padding: 40px 20px;
             }
 
+
             .page-title h1 {
+
                 font-size: 34px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column: auto;
             }
 
         }
@@ -193,11 +409,16 @@
 <body>
 
 
+<!-- ==================== -->
+<!-- 导航栏 -->
+<!-- ==================== -->
+
 <nav>
 
     <div class="logo">
         SEVENFLASH
     </div>
+
 
     <div class="nav-links">
 
@@ -217,162 +438,498 @@
 <main>
 
 
-    <div class="page-title">
+<!-- ==================== -->
+<!-- 页面标题 -->
+<!-- ==================== -->
 
-        <h1>
-            训练记录
-        </h1>
+<div class="page-title">
 
-        <p>
-            记录每一次训练，观察自己的长期变化
-        </p>
+    <h1>
+        训练记录
+    </h1>
+
+    <p>
+        记录每一次训练，观察自己的长期变化
+    </p>
+
+</div>
+
+
+<!-- ==================== -->
+<!-- 添加训练 -->
+<!-- ==================== -->
+
+<div class="form-card">
+
+    <h2>
+        添加训练
+    </h2>
+
+
+    <div class="form-grid">
+
+
+        <!-- 日期 -->
+
+        <div class="form-group">
+
+            <label>
+                日期
+            </label>
+
+            <input
+                type="date"
+                id="date"
+            >
+
+        </div>
+
+
+        <!-- 训练类型 -->
+
+        <div class="form-group">
+
+            <label>
+                训练类型
+            </label>
+
+            <select id="trainingType">
+
+                <option value="Push 日">
+                    Push 日
+                </option>
+
+                <option value="Pull 日">
+                    Pull 日
+                </option>
+
+                <option value="Core 日">
+                    Core 日
+                </option>
+
+                <option value="跑步">
+                    跑步
+                </option>
+
+                <option value="休息">
+                    休息
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- 动作 -->
+
+        <div class="form-group">
+
+            <label>
+                动作名称
+            </label>
+
+            <input
+                type="text"
+                id="exerciseName"
+                placeholder="例如：俯卧撑"
+            >
+
+        </div>
+
+
+        <!-- 次数 -->
+
+        <div class="form-group">
+
+            <label>
+                次数 / 时间
+            </label>
+
+            <input
+                type="text"
+                id="reps"
+                placeholder="例如：8"
+            >
+
+        </div>
+
+
+        <!-- 组数 -->
+
+        <div class="form-group">
+
+            <label>
+                组数
+            </label>
+
+            <input
+                type="number"
+                id="sets"
+                placeholder="例如：4"
+                min="1"
+            >
+
+        </div>
+
+
+        <!-- 备注 -->
+
+        <div class="form-group full">
+
+            <label>
+                备注
+            </label>
+
+            <textarea
+                id="note"
+                placeholder="记录今天训练的状态、感受、完成情况……"
+            ></textarea>
+
+        </div>
+
 
     </div>
 
 
-    <!-- 2026.09.27 -->
-
-    <div class="training-card">
-
-        <div class="training-header">
-
-            <h2>
-                Push 日
-            </h2>
-
-            <div class="training-date">
-                2026.09.27
-            </div>
-
-        </div>
+    <button
+        class="save-button"
+        onclick="saveTraining()"
+    >
+        保存训练
+    </button>
 
 
-        <div class="exercise">
-
-            <span class="exercise-name">
-                俯卧撑
-            </span>
-
-            <span class="exercise-value">
-                8 × 4
-            </span>
-
-        </div>
+</div>
 
 
-        <div class="exercise">
+<!-- ==================== -->
+<!-- 历史记录 -->
+<!-- ==================== -->
 
-            <span class="exercise-name">
-                宽距俯卧撑
-            </span>
-
-            <span class="exercise-value">
-                8 × 4
-            </span>
-
-        </div>
+<div class="section-title">
+    训练历史
+</div>
 
 
-        <div class="exercise">
+<div id="trainingList">
 
-            <span class="exercise-name">
-                窄距俯卧撑
-            </span>
-
-            <span class="exercise-value">
-                8 × 4
-            </span>
-
-        </div>
-
-
-        <div class="exercise">
-
-            <span class="exercise-name">
-                斜身支撑
-            </span>
-
-            <span class="exercise-value">
-                30 秒 × 3
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- 2026.09.26 -->
-
-    <div class="training-card">
-
-        <div class="training-header">
-
-            <h2>
-                Pull 日
-            </h2>
-
-            <div class="training-date">
-                2026.09.26
-            </div>
-
-        </div>
-
-
-        <div class="exercise">
-
-            <span class="exercise-name">
-                引体向上
-            </span>
-
-            <span class="exercise-value">
-                记录数据
-            </span>
-
-        </div>
-
-
-        <div class="exercise">
-
-            <span class="exercise-name">
-                水平引体
-            </span>
-
-            <span class="exercise-value">
-                记录数据
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- 2026.09.25 -->
-
-    <div class="training-card">
-
-        <div class="training-header">
-
-            <h2>
-                休息
-            </h2>
-
-            <div class="training-date">
-                2026.09.25
-            </div>
-
-        </div>
-
-        <p style="color:#6b7280;">
-            今日休息
-        </p>
-
-    </div>
+</div>
 
 
 </main>
 
 
+<script>
+
+
+/* ==================== */
+/* 页面加载 */
+/* ==================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /*
+        自动填写今天的日期
+    */
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+
+    const month = String(today.getMonth() + 1)
+        .padStart(2, "0");
+
+    const day = String(today.getDate())
+        .padStart(2, "0");
+
+
+    document.getElementById("date").value =
+        `${year}-${month}-${day}`;
+
+
+    /*
+        显示已有记录
+    */
+
+    renderTraining();
+
+});
+
+
+/* ==================== */
+/* 保存训练 */
+/* ==================== */
+
+function saveTraining() {
+
+    const date =
+        document.getElementById("date").value;
+
+
+    const trainingType =
+        document.getElementById("trainingType").value;
+
+
+    const exerciseName =
+        document.getElementById("exerciseName").value;
+
+
+    const reps =
+        document.getElementById("reps").value;
+
+
+    const sets =
+        document.getElementById("sets").value;
+
+
+    const note =
+        document.getElementById("note").value;
+
+
+    /*
+        检查动作
+    */
+
+    if (!exerciseName) {
+
+        alert("请输入动作名称");
+
+        return;
+
+    }
+
+
+    /*
+        创建训练数据
+    */
+
+    const training = {
+
+        id: Date.now(),
+
+        date: date,
+
+        type: trainingType,
+
+        exercise: exerciseName,
+
+        reps: reps,
+
+        sets: sets,
+
+        note: note
+
+    };
+
+
+    /*
+        获取以前的数据
+    */
+
+    let trainings =
+        JSON.parse(
+            localStorage.getItem("trainings")
+        ) || [];
+
+
+    /*
+        添加新数据
+    */
+
+    trainings.push(training);
+
+
+    /*
+        保存
+    */
+
+    localStorage.setItem(
+        "trainings",
+        JSON.stringify(trainings)
+    );
+
+
+    /*
+        清空动作、次数、组数、备注
+    */
+
+    document.getElementById("exerciseName").value = "";
+
+    document.getElementById("reps").value = "";
+
+    document.getElementById("sets").value = "";
+
+    document.getElementById("note").value = "";
+
+
+    /*
+        更新页面
+    */
+
+    renderTraining();
+
+}
+
+
+/* ==================== */
+/* 显示训练 */
+/* ==================== */
+
+function renderTraining() {
+
+    const container =
+        document.getElementById("trainingList");
+
+
+    let trainings =
+        JSON.parse(
+            localStorage.getItem("trainings")
+        ) || [];
+
+
+    /*
+        没有记录
+    */
+
+    if (trainings.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="training-card empty">
+
+                暂时还没有训练记录
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+        最新记录放前面
+    */
+
+    trainings.sort(function (a, b) {
+
+        return b.date.localeCompare(a.date);
+
+    });
+
+
+    /*
+        生成 HTML
+    */
+
+    container.innerHTML = "";
+
+
+    trainings.forEach(function (training) {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "training-card";
+
+
+        card.innerHTML = `
+
+            <div class="training-header">
+
+                <h2>
+                    ${training.type}
+                </h2>
+
+                <div class="training-date">
+                    ${training.date}
+                </div>
+
+            </div>
+
+
+            <div class="exercise">
+
+                <span class="exercise-name">
+                    ${training.exercise}
+                </span>
+
+                <span class="exercise-value">
+                    ${training.reps || "-"}
+                    ×
+                    ${training.sets || "-"}
+                </span>
+
+            </div>
+
+
+            ${
+                training.note
+                ?
+                `
+                <p style="color:#6b7280;">
+                    备注：${training.note}
+                </p>
+                `
+                :
+                ""
+            }
+
+
+            <button
+                class="delete-button"
+                onclick="deleteTraining(${training.id})"
+            >
+                删除这条记录
+            </button>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* ==================== */
+/* 删除训练 */
+/* ==================== */
+
+function deleteTraining(id) {
+
+    let trainings =
+        JSON.parse(
+            localStorage.getItem("trainings")
+        ) || [];
+
+
+    trainings =
+        trainings.filter(function (training) {
+
+            return training.id !== id;
+
+        });
+
+
+    localStorage.setItem(
+        "trainings",
+        JSON.stringify(trainings)
+    );
+
+
+    renderTraining();
+
+}
+
+
+</script>
+
+
 </body>
 
 </html>
-```
