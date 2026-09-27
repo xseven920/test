@@ -364,6 +364,84 @@ canvas {
     }
 }
 
+/* =========================
+   身体数据概览
+========================= */
+
+.body-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.body-value {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.body-unit {
+    font-size: 14px;
+    color: #888;
+}
+
+
+/* =========================
+   身体数据表格
+========================= */
+
+.body-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.body-table th,
+.body-table td {
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.body-table th {
+    color: #777;
+    font-size: 14px;
+}
+
+.delete-body {
+    border: none;
+    background: #f1f1f1;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-body:hover {
+    background: #ddd;
+}
+
+
+@media (max-width: 800px) {
+
+    .body-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .body-table {
+        font-size: 13px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .body-summary {
+        grid-template-columns: 1fr;
+    }
+
+}
 </style>
 
 
@@ -424,7 +502,106 @@ canvas {
 <div class="section">
 
     <h2>记录身体数据</h2>
+<!-- =========================
+     当前身体数据
+========================= -->
 
+<div class="section">
+
+    <h2>当前身体数据</h2>
+
+    <div class="body-summary">
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                当前体重
+            </div>
+
+            <div
+                class="body-value"
+                id="currentWeight">
+                --
+            </div>
+
+            <div class="body-unit">
+                kg
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                当前体脂率
+            </div>
+
+            <div
+                class="body-value"
+                id="currentBodyFat">
+                --
+            </div>
+
+            <div class="body-unit">
+                %
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                当前腰围
+            </div>
+
+            <div
+                class="body-value"
+                id="currentWaist">
+                --
+            </div>
+
+            <div class="body-unit">
+                cm
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-title">
+                当前胸围
+            </div>
+
+            <div
+                class="body-value"
+                id="currentChest">
+                --
+            </div>
+
+            <div class="body-unit">
+                cm
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     身体数据历史
+========================= -->
+
+<div class="section">
+
+    <h2>身体数据记录</h2>
+
+    <div id="bodyTable"></div>
+
+</div>
     <div class="body-form">
 
         <div class="form-item">
@@ -844,6 +1021,261 @@ function saveBodyData() {
 
 }
 
+/* ==================================================
+   获取最新身体数据
+================================================== */
+
+function getLatestBodyData() {
+
+    if (bodyData.length === 0) {
+        return null;
+    }
+
+    const sorted =
+        [...bodyData].sort(
+            (a, b) =>
+                new Date(b.date) -
+                new Date(a.date)
+        );
+
+    return sorted[0];
+
+}
+
+
+/* ==================================================
+   显示当前身体数据
+================================================== */
+
+function renderCurrentBodyData() {
+
+    const latest =
+        getLatestBodyData();
+
+    if (!latest) {
+        return;
+    }
+
+
+    document.getElementById(
+        "currentWeight"
+    ).textContent =
+        latest.weight !== null
+            ? latest.weight
+            : "--";
+
+
+    document.getElementById(
+        "currentBodyFat"
+    ).textContent =
+        latest.bodyFat !== null
+            ? latest.bodyFat
+            : "--";
+
+
+    document.getElementById(
+        "currentWaist"
+    ).textContent =
+        latest.waist !== null
+            ? latest.waist
+            : "--";
+
+
+    document.getElementById(
+        "currentChest"
+    ).textContent =
+        latest.chest !== null
+            ? latest.chest
+            : "--";
+
+}
+
+
+/* ==================================================
+   显示身体数据历史
+================================================== */
+
+function renderBodyTable() {
+
+    const container =
+        document.getElementById(
+            "bodyTable"
+        );
+
+
+    if (bodyData.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">暂无身体数据</div>';
+
+        return;
+
+    }
+
+
+    /*
+       最新日期排在最前面
+    */
+
+    const sorted =
+        [...bodyData].sort(
+            (a, b) =>
+                new Date(b.date) -
+                new Date(a.date)
+        );
+
+
+    let html = `
+
+        <table class="body-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>日期</th>
+
+                    <th>体重</th>
+
+                    <th>体脂率</th>
+
+                    <th>腰围</th>
+
+                    <th>胸围</th>
+
+                    <th>操作</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+
+    sorted.forEach(
+        record => {
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${record.date}
+                    </td>
+
+                    <td>
+                        ${
+                            record.weight !== null
+                                ? record.weight + " kg"
+                                : "--"
+                        }
+                    </td>
+
+                    <td>
+                        ${
+                            record.bodyFat !== null
+                                ? record.bodyFat + " %"
+                                : "--"
+                        }
+                    </td>
+
+                    <td>
+                        ${
+                            record.waist !== null
+                                ? record.waist + " cm"
+                                : "--"
+                        }
+                    </td>
+
+                    <td>
+                        ${
+                            record.chest !== null
+                                ? record.chest + " cm"
+                                : "--"
+                        }
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="delete-body"
+                            onclick="deleteBodyData(${record.id})">
+
+                            删除
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    container.innerHTML = html;
+
+}
+
+
+/* ==================================================
+   删除身体数据
+================================================== */
+
+function deleteBodyData(id) {
+
+    const confirmDelete =
+        confirm(
+            "确定要删除这条身体数据吗？"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    bodyData =
+        bodyData.filter(
+            item => item.id !== id
+        );
+
+
+    localStorage.setItem(
+        "bodyData",
+        JSON.stringify(bodyData)
+    );
+
+
+    renderCurrentBodyData();
+
+    renderBodyTable();
+
+}
+
+
+/* ==================================================
+   初始化身体数据
+================================================== */
+
+renderCurrentBodyData();
+
+renderBodyTable();
+
+    
 /* ==================================================
    读取训练数据
 ================================================== */
