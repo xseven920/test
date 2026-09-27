@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>数据统计 - My Planche Journey</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -17,9 +19,14 @@ body {
     color: #222;
 }
 
+/* =========================
+   导航
+========================= */
+
 .nav {
     background: #111;
     padding: 18px 30px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,6 +48,11 @@ body {
     color: white;
 }
 
+
+/* =========================
+   页面
+========================= */
+
 .container {
     max-width: 1100px;
     margin: auto;
@@ -56,116 +68,222 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* 数据卡片 */
+
+/* =========================
+   数据卡片
+========================= */
 
 .stats {
+
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
     gap: 18px;
 }
 
 .stat-card {
+
     background: white;
+
     padding: 24px;
+
     border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.05);
 }
 
 .stat-title {
+
     color: #777;
+
     font-size: 14px;
 }
 
 .stat-number {
+
     font-size: 32px;
+
     font-weight: bold;
+
     margin-top: 10px;
 }
 
-/* 区块 */
+
+/* =========================
+   内容区
+========================= */
 
 .section {
+
     margin-top: 30px;
+
     background: white;
+
     padding: 25px;
+
     border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.05);
 }
 
 .section h2 {
+
     margin-top: 0;
 }
 
-/* 类型统计 */
+
+/* =========================
+   图表
+========================= */
+
+.chart-container {
+
+    width: 100%;
+
+    height: 320px;
+
+    position: relative;
+}
+
+canvas {
+
+    width: 100% !important;
+
+    height: 100% !important;
+}
+
+
+/* =========================
+   类型统计
+========================= */
 
 .type-row {
+
     margin: 18px 0;
 }
 
 .type-header {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     margin-bottom: 8px;
 }
 
 .progress {
+
     height: 12px;
+
     background: #eee;
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
 .progress-bar {
+
     height: 100%;
+
     background: #111;
+
     border-radius: 20px;
 }
 
-/* 动作统计 */
+
+/* =========================
+   动作统计
+========================= */
 
 .exercise-row {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     padding: 14px 0;
-    border-bottom: 1px solid #eee;
+
+    border-bottom:
+        1px solid #eee;
 }
 
 .exercise-row:last-child {
+
     border-bottom: none;
 }
 
 .empty {
+
     color: #999;
+
     text-align: center;
+
     padding: 30px;
 }
 
-/* 手机 */
+
+/* =========================
+   手机
+========================= */
 
 @media (max-width: 800px) {
+
     .stats {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .nav {
+
         padding: 15px;
     }
 
     .nav a {
+
         margin-left: 10px;
+
         font-size: 14px;
     }
 }
 
+
 @media (max-width: 500px) {
+
     .stats {
+
         grid-template-columns: 1fr;
     }
+
+    .chart-container {
+
+        height: 250px;
+    }
 }
+
 </style>
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     导航
+========================= -->
 
 <div class="nav">
 
@@ -174,111 +292,199 @@ h1 {
     </div>
 
     <div>
-        <a href="index.html">首页</a>
-        <a href="training.html">训练</a>
-        <a href="data.html">数据</a>
-        <a href="planche.html">俄挺</a>
+
+        <a href="index.html">
+            首页
+        </a>
+
+        <a href="training.html">
+            训练
+        </a>
+
+        <a href="data.html">
+            数据
+        </a>
+
+        <a href="planche.html">
+            俄挺
+        </a>
+
     </div>
 
 </div>
+
 
 
 <div class="container">
 
-    <h1>数据统计</h1>
 
-    <div class="subtitle">
-        自动统计你的训练数据
-    </div>
+<h1>
+    数据统计
+</h1>
+
+<div class="subtitle">
+    记录、分析和观察自己的训练变化
+</div>
 
 
-    <!-- 核心数据 -->
 
-    <div class="stats">
+<!-- =========================
+     核心数据
+========================= -->
 
-        <div class="stat-card">
-            <div class="stat-title">
-                累计训练天数
-            </div>
+<div class="stats">
 
-            <div class="stat-number" id="trainingDays">
-                0
-            </div>
+
+    <div class="stat-card">
+
+        <div class="stat-title">
+            累计训练天数
         </div>
 
+        <div
+            class="stat-number"
+            id="trainingDays">
 
-        <div class="stat-card">
-            <div class="stat-title">
-                本周训练次数
-            </div>
+            0
 
-            <div class="stat-number" id="weekTraining">
-                0
-            </div>
-        </div>
-
-
-        <div class="stat-card">
-            <div class="stat-title">
-                累计训练次数
-            </div>
-
-            <div class="stat-number" id="totalTraining">
-                0
-            </div>
-        </div>
-
-
-        <div class="stat-card">
-            <div class="stat-title">
-                训练动作数
-            </div>
-
-            <div class="stat-number" id="totalExercises">
-                0
-            </div>
         </div>
 
     </div>
 
 
-    <!-- 训练类型 -->
 
-    <div class="section">
+    <div class="stat-card">
 
-        <h2>训练类型</h2>
+        <div class="stat-title">
+            本周训练次数
+        </div>
 
-        <div id="typeStats"></div>
+        <div
+            class="stat-number"
+            id="weekTraining">
+
+            0
+
+        </div>
 
     </div>
 
 
-    <!-- 动作统计 -->
 
-    <div class="section">
+    <div class="stat-card">
 
-        <h2>动作统计</h2>
+        <div class="stat-title">
+            累计训练次数
+        </div>
 
-        <div id="exerciseStats"></div>
+        <div
+            class="stat-number"
+            id="totalTraining">
+
+            0
+
+        </div>
+
+    </div>
+
+
+
+    <div class="stat-card">
+
+        <div class="stat-title">
+            训练动作数
+        </div>
+
+        <div
+            class="stat-number"
+            id="totalExercises">
+
+            0
+
+        </div>
 
     </div>
 
 </div>
 
 
+
+<!-- =========================
+     每周训练次数
+========================= -->
+
+<div class="section">
+
+    <h2>
+        每周训练次数
+    </h2>
+
+    <div class="chart-container">
+
+        <canvas id="weeklyChart"></canvas>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     训练类型
+========================= -->
+
+<div class="section">
+
+    <h2>
+        训练类型分布
+    </h2>
+
+    <div class="chart-container">
+
+        <canvas id="typeChart"></canvas>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     动作统计
+========================= -->
+
+<div class="section">
+
+    <h2>
+        动作统计
+    </h2>
+
+    <div id="exerciseStats"></div>
+
+</div>
+
+
+</div>
+
+
+
 <script>
 
-/* =========================
+
+/* ==================================================
    读取训练数据
-========================= */
+================================================== */
 
 const trainings =
-    JSON.parse(localStorage.getItem("trainings")) || [];
+    JSON.parse(
+        localStorage.getItem("trainings")
+    ) || [];
 
 
-/* =========================
-   判断是否为休息
-========================= */
+
+/* ==================================================
+   是否休息
+================================================== */
 
 function isRest(type) {
 
@@ -287,85 +493,117 @@ function isRest(type) {
 }
 
 
-/* =========================
-   统计累计训练天数
-   同一天多个记录只算一天
-========================= */
+
+/* ==================================================
+   累计训练天数
+================================================== */
 
 function calculateTrainingDays() {
 
-    const dates = new Set();
+    const dates =
+        new Set();
 
     trainings.forEach(training => {
 
         if (!isRest(training.type)) {
-            dates.add(training.date);
+
+            dates.add(
+                training.date
+            );
+
         }
 
     });
 
     return dates.size;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    获取本周开始日期
-========================= */
+================================================== */
 
 function getWeekStart() {
 
-    const today = new Date();
+    const today =
+        new Date();
 
-    const day = today.getDay();
+    const day =
+        today.getDay();
 
-    /*
-       周一作为一周开始
-       Sunday = 0
-    */
+    const diff =
+        day === 0
+            ? 6
+            : day - 1;
 
-    const diff = day === 0 ? 6 : day - 1;
+    const monday =
+        new Date(today);
 
-    const monday = new Date(today);
+    monday.setDate(
+        today.getDate() - diff
+    );
 
-    monday.setDate(today.getDate() - diff);
-
-    monday.setHours(0, 0, 0, 0);
+    monday.setHours(
+        0,
+        0,
+        0,
+        0
+    );
 
     return monday;
+
 }
 
 
-/* =========================
-   统计本周训练次数
-========================= */
+
+/* ==================================================
+   本周训练次数
+================================================== */
 
 function calculateWeekTraining() {
 
-    const monday = getWeekStart();
+    const monday =
+        getWeekStart();
 
     let count = 0;
 
     trainings.forEach(training => {
 
-        if (isRest(training.type)) {
+        if (
+            isRest(training.type)
+        ) {
+
             return;
+
         }
 
-        const date = new Date(training.date + "T00:00:00");
+        const date =
+            new Date(
+                training.date
+                + "T00:00:00"
+            );
 
-        if (date >= monday) {
+        if (
+            date >= monday
+        ) {
+
             count++;
+
         }
 
     });
 
     return count;
+
 }
 
 
-/* =========================
-   统计训练动作数量
-========================= */
+
+/* ==================================================
+   动作数量
+================================================== */
 
 function calculateExerciseCount() {
 
@@ -373,21 +611,28 @@ function calculateExerciseCount() {
 
     trainings.forEach(training => {
 
-        if (!training.exercises) {
+        if (
+            !training.exercises
+        ) {
+
             return;
+
         }
 
-        count += training.exercises.length;
+        count +=
+            training.exercises.length;
 
     });
 
     return count;
+
 }
 
 
-/* =========================
-   训练类型统计
-========================= */
+
+/* ==================================================
+   训练类型
+================================================== */
 
 function calculateTypes() {
 
@@ -395,14 +640,23 @@ function calculateTypes() {
 
     trainings.forEach(training => {
 
-        if (isRest(training.type)) {
+        if (
+            isRest(training.type)
+        ) {
+
             return;
+
         }
 
-        const type = training.type || "其他";
+        const type =
+            training.type || "其他";
 
-        if (!result[type]) {
+        if (
+            !result[type]
+        ) {
+
             result[type] = 0;
+
         }
 
         result[type]++;
@@ -410,12 +664,14 @@ function calculateTypes() {
     });
 
     return result;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    动作统计
-========================= */
+================================================== */
 
 function calculateExercises() {
 
@@ -423,174 +679,380 @@ function calculateExercises() {
 
     trainings.forEach(training => {
 
-        if (!training.exercises) {
+        if (
+            !training.exercises
+        ) {
+
             return;
+
         }
 
-        training.exercises.forEach(exercise => {
+        training.exercises.forEach(
+            exercise => {
 
-            const name = exercise.name;
+                const name =
+                    exercise.name;
 
-            if (!name) {
-                return;
+                if (!name) {
+
+                    return;
+
+                }
+
+                if (!result[name]) {
+
+                    result[name] = {
+
+                        count: 0,
+
+                        sets: 0
+
+                    };
+
+                }
+
+                result[name].count++;
+
+                result[name].sets +=
+                    Number(
+                        exercise.sets
+                    ) || 0;
+
             }
-
-            if (!result[name]) {
-
-                result[name] = {
-                    count: 0,
-                    sets: 0
-                };
-
-            }
-
-            result[name].count++;
-
-            const sets = Number(exercise.sets) || 0;
-
-            result[name].sets += sets;
-
-        });
+        );
 
     });
 
     return result;
+
 }
 
 
-/* =========================
-   显示基础数据
-========================= */
 
-document.getElementById("trainingDays").textContent =
+/* ==================================================
+   页面顶部数据
+================================================== */
+
+document.getElementById(
+    "trainingDays"
+).textContent =
     calculateTrainingDays();
 
-document.getElementById("weekTraining").textContent =
+
+document.getElementById(
+    "weekTraining"
+).textContent =
     calculateWeekTraining();
 
-document.getElementById("totalTraining").textContent =
-    trainings.filter(t => !isRest(t.type)).length;
 
-document.getElementById("totalExercises").textContent =
+document.getElementById(
+    "totalTraining"
+).textContent =
+    trainings.filter(
+        t => !isRest(t.type)
+    ).length;
+
+
+document.getElementById(
+    "totalExercises"
+).textContent =
     calculateExerciseCount();
 
 
-/* =========================
-   显示训练类型
-========================= */
 
-const typeStats =
-    document.getElementById("typeStats");
+/* ==================================================
+   每周训练统计
+================================================== */
 
-const types = calculateTypes();
+function calculateWeeklyData() {
 
-const typeNames = Object.keys(types);
+    const result = {};
 
-if (typeNames.length === 0) {
+    trainings.forEach(training => {
 
-    typeStats.innerHTML =
-        '<div class="empty">暂无训练数据</div>';
+        if (
+            isRest(training.type)
+        ) {
 
-} else {
+            return;
 
-    const maxType =
-        Math.max(...Object.values(types));
+        }
 
-    typeNames.forEach(type => {
+        const date =
+            new Date(
+                training.date
+                + "T00:00:00"
+            );
 
-        const count = types[type];
+        /*
+           获取这一周的周一
+        */
 
-        const percent =
-            (count / maxType) * 100;
+        const day =
+            date.getDay();
 
-        typeStats.innerHTML += `
+        const diff =
+            day === 0
+                ? 6
+                : day - 1;
 
-            <div class="type-row">
+        const monday =
+            new Date(date);
 
-                <div class="type-header">
+        monday.setDate(
+            date.getDate() - diff
+        );
 
-                    <span>${type}</span>
+        /*
+           转成 YYYY-MM-DD
+        */
 
-                    <strong>${count} 次</strong>
+        const key =
+            monday
+                .toISOString()
+                .split("T")[0];
 
-                </div>
+        if (
+            !result[key]
+        ) {
 
-                <div class="progress">
+            result[key] = 0;
 
-                    <div
-                        class="progress-bar"
-                        style="width:${percent}%">
-                    </div>
+        }
 
-                </div>
-
-            </div>
-
-        `;
+        result[key]++;
 
     });
+
+
+    /*
+       按日期排序
+    */
+
+    const keys =
+        Object.keys(result)
+            .sort();
+
+
+    return {
+
+        labels: keys.map(
+            key => {
+
+                const date =
+                    new Date(
+                        key + "T00:00:00"
+                    );
+
+                return (
+                    (date.getMonth() + 1)
+                    + "/"
+                    + date.getDate()
+                );
+
+            }
+        ),
+
+        values: keys.map(
+            key => result[key]
+        )
+
+    };
 
 }
 
 
-/* =========================
-   显示动作统计
-========================= */
+
+/* ==================================================
+   创建每周训练图
+================================================== */
+
+const weeklyData =
+    calculateWeeklyData();
+
+
+new Chart(
+    document.getElementById(
+        "weeklyChart"
+    ),
+    {
+
+        type: "bar",
+
+        data: {
+
+            labels:
+                weeklyData.labels,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "训练次数",
+
+                    data:
+                        weeklyData.values
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    ticks: {
+
+                        stepSize: 1
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   创建训练类型图
+================================================== */
+
+const typeData =
+    calculateTypes();
+
+
+const typeNames =
+    Object.keys(typeData);
+
+
+new Chart(
+
+    document.getElementById(
+        "typeChart"
+    ),
+
+    {
+
+        type: "doughnut",
+
+        data: {
+
+            labels:
+                typeNames,
+
+            datasets: [
+
+                {
+
+                    data:
+                        typeNames.map(
+                            name =>
+                                typeData[name]
+                        )
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    }
+
+);
+
+
+
+/* ==================================================
+   动作统计
+================================================== */
 
 const exerciseStats =
-    document.getElementById("exerciseStats");
+    document.getElementById(
+        "exerciseStats"
+    );
+
 
 const exercises =
     calculateExercises();
+
 
 const exerciseNames =
     Object.keys(exercises);
 
 
 /*
-   按训练次数从高到低排序
+   从训练次数最多
+   排到最少
 */
 
-exerciseNames.sort((a, b) => {
+exerciseNames.sort(
+    (a, b) =>
+        exercises[b].count -
+        exercises[a].count
+);
 
-    return exercises[b].count -
-           exercises[a].count;
 
-});
-
-
-if (exerciseNames.length === 0) {
+if (
+    exerciseNames.length === 0
+) {
 
     exerciseStats.innerHTML =
         '<div class="empty">暂无训练数据</div>';
 
 } else {
 
-    exerciseNames.forEach(name => {
+    exerciseNames.forEach(
+        name => {
 
-        const data =
-            exercises[name];
+            const data =
+                exercises[name];
 
-        exerciseStats.innerHTML += `
+            exerciseStats.innerHTML += `
 
-            <div class="exercise-row">
+                <div class="exercise-row">
 
-                <span>
-                    ${name}
-                </span>
+                    <span>
+                        ${name}
+                    </span>
 
-                <span>
-                    ${data.count} 次训练
-                    · ${data.sets} 组
-                </span>
+                    <span>
+                        ${data.count} 次训练
+                        · ${data.sets} 组
+                    </span>
 
-            </div>
+                </div>
 
-        `;
+            `;
 
-    });
+        }
+    );
 
 }
+
 
 </script>
 
