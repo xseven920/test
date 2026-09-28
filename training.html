@@ -687,7 +687,6 @@
 
 <script>
 
-
 /* ==================== */
 /* 页面初始化 */
 /* ==================== */
@@ -725,7 +724,6 @@ function setToday() {
         String(today.getDate())
         .padStart(2, "0");
 
-
     document.getElementById("date").value =
         `${year}-${month}-${day}`;
 
@@ -739,16 +737,15 @@ function setToday() {
 function addExercise() {
 
     const list =
-        document.getElementById("exerciseList");
-
+        document.getElementById(
+            "exerciseList"
+        );
 
     const row =
         document.createElement("div");
 
-
     row.className =
         "exercise-row";
-
 
     row.innerHTML = `
 
@@ -758,13 +755,11 @@ function addExercise() {
             placeholder="动作，例如：俯卧撑"
         >
 
-
         <input
             type="text"
             class="reps-input"
             placeholder="次数/时间"
         >
-
 
         <input
             type="number"
@@ -773,8 +768,8 @@ function addExercise() {
             min="1"
         >
 
-
         <button
+            type="button"
             class="remove-exercise"
             onclick="removeExercise(this)"
         >
@@ -783,14 +778,13 @@ function addExercise() {
 
     `;
 
-
     list.appendChild(row);
 
 }
 
 
 /* ==================== */
-/* 删除动作 */
+/* 删除动作输入框 */
 /* ==================== */
 
 function removeExercise(button) {
@@ -798,8 +792,423 @@ function removeExercise(button) {
     const row =
         button.parentElement;
 
-
     row.remove();
+
+}
+
+
+/* ==================== */
+/* 从 D1 获取训练数据 */
+/* ==================== */
+
+async function getTrainingData() {
+
+    const response =
+        await fetch(
+            "/api/training"
+        );
+
+    if (!response.ok) {
+
+        throw new Error(
+            "读取训练数据失败：HTTP " +
+            response.status
+        );
+
+    }
+
+    return await response.json();
+
+}
+
+
+/* ==================== */
+/* 显示训练历史 */
+/* ==================== */
+
+async function renderTraining() {
+
+    const container =
+        document.getElementById(
+            "trainingList"
+        );
+
+    container.innerHTML = `
+
+        <div class="training-card empty">
+
+            正在读取训练数据……
+
+        </div>
+
+    `;
+
+    try {
+
+        const records =
+            await getTrainingData();
+
+
+        /* ==================== */
+        /* 没有数据 */
+        /* ==================== */
+
+        if (
+            !records ||
+            records.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="training-card empty">
+
+                    暂时还没有训练记录
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* ==================== */
+        /* 按 Day 分组 */
+        /* ==================== */
+
+        const grouped = {};
+
+
+        records.forEach(
+            function (record) {
+
+                const day =
+                    record.day || 0;
+
+
+                if (!grouped[day]) {
+
+                    grouped[day] = [];
+
+                }
+
+
+                grouped[day].push(record);
+
+            }
+        );
+
+
+        /* ==================== */
+        /* Day 从新到旧 */
+        /* ==================== */
+
+        const days =
+            Object.keys(grouped)
+                .sort(
+                    function (a, b) {
+
+                        return (
+                            Number(b) -
+                            Number(a)
+                        );
+
+                    }
+                );
+
+
+        container.innerHTML = "";
+
+
+        /* ==================== */
+        /* 生成每一天 */
+        /* ==================== */
+
+        days.forEach(
+            function (day) {
+
+                const recordsForDay =
+                    grouped[day];
+
+
+                const first =
+                    recordsForDay[0];
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "training-card";
+
+
+                /* ==================== */
+                /* 动作 */
+                /* ==================== */
+
+                let exercisesHTML = "";
+
+
+                recordsForDay.forEach(
+                    function (record) {
+
+                        let value = "";
+
+
+                        /*
+                            普通动作：
+                            10 × 5
+                        */
+
+                        if (
+                            record.reps !== null &&
+                            record.reps !== undefined &&
+                            record.sets !== null &&
+                            record.sets !== undefined
+                        ) {
+
+                            value =
+                                record.reps +
+                                " × " +
+                                record.sets;
+
+                        }
+
+
+                        /*
+                            分组次数：
+                            5/4/4/3/1
+                        */
+
+                        else if (
+                            record.exercise_detail
+                        ) {
+
+                            value =
+                                record.exercise_detail;
+
+                        }
+
+
+                        /*
+                            只有总量
+                        */
+
+                        else if (
+                            record.total !== null &&
+                            record.total !== undefined
+                        ) {
+
+                            value =
+                                "总量 " +
+                                record.total;
+
+                        }
+
+
+                        else {
+
+                            value = "-";
+
+                        }
+
+
+                        exercisesHTML += `
+
+                            <div class="exercise">
+
+                                <span class="exercise-name">
+
+                                    ${escapeHtml(
+                                        record.exercise_name
+                                    )}
+
+                                </span>
+
+
+                                <span class="exercise-value">
+
+                                    ${escapeHtml(
+                                        value
+                                    )}
+
+                                </span>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                /* ==================== */
+                /* 日期 */
+                /* ==================== */
+
+                const date =
+                    first.training_date ||
+                    "-";
+
+
+                /* ==================== */
+                /* 训练类型 */
+                /* ==================== */
+
+                const type =
+                    first.training_type ||
+                    "训练";
+
+
+                /* ==================== */
+                /* 备注 */
+                /* ==================== */
+
+                const notes = [];
+
+
+                recordsForDay.forEach(
+                    function (record) {
+
+                        if (record.note) {
+
+                            notes.push(
+                                record.note
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                let noteHTML = "";
+
+
+                if (notes.length > 0) {
+
+                    noteHTML = `
+
+                        <div class="training-note">
+
+                            备注：
+                            ${escapeHtml(
+                                notes.join("；")
+                            )}
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                /* ==================== */
+                /* 完整卡片 */
+                /* ==================== */
+
+                card.innerHTML = `
+
+                    <div class="training-header">
+
+                        <h2>
+
+                            Day ${escapeHtml(
+                                String(day)
+                            )}
+
+                            ·
+
+                            ${escapeHtml(
+                                type
+                            )}
+
+                        </h2>
+
+
+                        <div class="training-date">
+
+                            ${escapeHtml(
+                                date
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    ${exercisesHTML}
+
+
+                    ${noteHTML}
+
+                `;
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        container.innerHTML = `
+
+            <div class="training-card empty">
+
+                读取训练数据失败
+
+                <br><br>
+
+                ${escapeHtml(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ==================== */
+/* HTML 转义 */
+/* ==================== */
+
+function escapeHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
 
 }
 
@@ -810,284 +1219,13 @@ function removeExercise(button) {
 
 function saveTraining() {
 
-
-    const date =
-        document.getElementById("date").value;
-
-
-    const type =
-        document.getElementById("trainingType").value;
-
-
-    const note =
-        document.getElementById("note").value;
-
-
-    const rows =
-        document.querySelectorAll(
-            ".exercise-row"
-        );
-
-
-    const exercises = [];
-
-
-    rows.forEach(function (row) {
-
-
-        const name =
-            row.querySelector(
-                ".exercise-name-input"
-            ).value.trim();
-
-
-        const reps =
-            row.querySelector(
-                ".reps-input"
-            ).value.trim();
-
-
-        const sets =
-            row.querySelector(
-                ".sets-input"
-            ).value.trim();
-
-
-        if (name) {
-
-            exercises.push({
-
-                name: name,
-
-                reps: reps,
-
-                sets: sets
-
-            });
-
-        }
-
-    });
-
-
-    /*
-        至少需要一个动作
-    */
-
-    if (exercises.length === 0) {
-
-        alert("请至少添加一个训练动作");
-
-        return;
-
-    }
-
-
-    /*
-        创建完整训练记录
-    */
-
-    const training = {
-
-        id: Date.now(),
-
-        date: date,
-
-        type: type,
-
-        exercises: exercises,
-
-        note: note
-
-    };
-
-
-    /*
-        获取旧数据
-    */
-
-    let trainings =
-        JSON.parse(
-            localStorage.getItem("trainings")
-        ) || [];
-
-
-    /*
-        添加新训练
-    */
-
-    trainings.push(training);
-
-
-    /*
-        保存到浏览器
-    */
-
-    localStorage.setItem(
-
-        "trainings",
-
-        JSON.stringify(trainings)
-
+    alert(
+        "数据库保存功能下一步接入。"
     );
-
-
-    /*
-        清空表单
-    */
-
-    document.getElementById("exerciseList")
-        .innerHTML = "";
-
-
-    document.getElementById("note")
-        .value = "";
-
-
-    addExercise();
-
-
-    /*
-        更新历史记录
-    */
-
-    renderTraining();
-
-
-    alert("训练记录已保存");
 
 }
 
-
-/* ==================== */
-/* 显示训练历史 */
-/* ==================== */
-
-function renderTraining() {
-
-
-    const container =
-        document.getElementById(
-            "trainingList"
-        );
-
-
-    let trainings =
-        JSON.parse(
-            localStorage.getItem("trainings")
-        ) || [];
-
-
-    /*
-        没有数据
-    */
-
-    if (trainings.length === 0) {
-
-        container.innerHTML = `
-
-            <div class="training-card empty">
-
-                暂时还没有训练记录
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    /*
-        最新日期放前面
-    */
-
-    trainings.sort(function (a, b) {
-
-        return b.date.localeCompare(a.date);
-
-    });
-
-
-    container.innerHTML = "";
-
-
-    trainings.forEach(function (training) {
-
-
-        const card =
-            document.createElement("div");
-
-
-        card.className =
-            "training-card";
-
-
-        /*
-            生成动作 HTML
-        */
-
-        let exercisesHTML = "";
-
-
-        training.exercises.forEach(
-            function (exercise) {
-
-                exercisesHTML += `
-
-                    <div class="exercise">
-
-                        <span class="exercise-name">
-
-                            ${exercise.name}
-
-                        </span>
-
-
-                        <span class="exercise-value">
-
-                            ${exercise.reps || "-"}
-
-                            ×
-
-                            ${exercise.sets || "-"}
-
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
-        );
-
-
-        /*
-            备注
-        */
-
-        let noteHTML = "";
-
-
-        if (training.note) {
-
-            noteHTML = `
-
-                <div class="training-note">
-
-                    备注：${training.note}
-
-                </div>
-
-            `;
-
-        }
-
-
-        /*
-            完整卡片
-        */
+</script>
 
         card.innerHTML = `
 
